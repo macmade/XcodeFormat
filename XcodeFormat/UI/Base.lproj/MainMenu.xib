@@ -689,7 +689,6 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="pqr-97-dBX"/>
-                <menuItem isSeparatorItem="YES" id="iBc-A8-mw6"/>
                 <menuItem title="Quit" keyEquivalent="q" id="nve-ZP-rii">
                     <connections>
                         <action selector="terminate:" target="-1" id="bf6-Wb-wSy"/>
