@@ -30,6 +30,8 @@
 		050E0F3D28EB49850080C562 /* XcodeKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 050E0F2C28EB49210080C562 /* XcodeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		050E0F5128EB5C980080C562 /* swiftformat in Copy Executables */ = {isa = PBXBuildFile; fileRef = 050E0F4C28EB5C4C0080C562 /* swiftformat */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		050E0F5228EB5C990080C562 /* uncrustify in Copy Executables */ = {isa = PBXBuildFile; fileRef = 050E0F4E28EB5C580080C562 /* uncrustify */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		050E0F5628EB61660080C562 /* ConfigurationsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E0F5528EB61660080C562 /* ConfigurationsWindowController.swift */; };
+		050E0F5928EB61BF0080C562 /* ConfigurationsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 050E0F5B28EB61BF0080C562 /* ConfigurationsWindowController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,6 +155,8 @@
 		050E0F3428EB49210080C562 /* EditorExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EditorExtension.entitlements; sourceTree = "<group>"; };
 		050E0F4C28EB5C4C0080C562 /* swiftformat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = swiftformat; path = "Submodules/swiftformat-build/dist/swiftformat"; sourceTree = SOURCE_ROOT; };
 		050E0F4E28EB5C580080C562 /* uncrustify */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = uncrustify; path = "Submodules/uncrustify-build/dist/bin/uncrustify"; sourceTree = SOURCE_ROOT; };
+		050E0F5528EB61660080C562 /* ConfigurationsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationsWindowController.swift; sourceTree = "<group>"; };
+		050E0F5A28EB61BF0080C562 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ConfigurationsWindowController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -338,6 +342,7 @@
 			children = (
 				050E0F1328EB3FB20080C562 /* AboutWindowController.swift */,
 				050E0E3F28EB307B0080C562 /* ApplicationDelegate.swift */,
+				050E0F5528EB61660080C562 /* ConfigurationsWindowController.swift */,
 				050E0F1128EB3FB10080C562 /* Credit.swift */,
 				050E0F1028EB3FB10080C562 /* CreditsWindowController.swift */,
 				050E0F1228EB3FB10080C562 /* CreditViewController.swift */,
@@ -354,6 +359,7 @@
 				050E0E4128EB307C0080C562 /* Assets.xcassets */,
 				050E0F0928EB3FAB0080C562 /* CreditsWindowController.xib */,
 				050E0F0B28EB3FAB0080C562 /* CreditViewController.xib */,
+				050E0F5B28EB61BF0080C562 /* ConfigurationsWindowController.xib */,
 				050E0E4328EB307C0080C562 /* MainMenu.xib */,
 			);
 			path = UI;
@@ -493,6 +499,7 @@
 			files = (
 				050E0F2228EB40D90080C562 /* License-Uncrustify.txt in Resources */,
 				050E0E4228EB307C0080C562 /* Assets.xcassets in Resources */,
+				050E0F5928EB61BF0080C562 /* ConfigurationsWindowController.xib in Resources */,
 				050E0F0D28EB3FAB0080C562 /* AboutWindowController.xib in Resources */,
 				050E0F2328EB40D90080C562 /* License-SwiftFormat.txt in Resources */,
 				050E0F0E28EB3FAB0080C562 /* CreditsWindowController.xib in Resources */,
@@ -537,6 +544,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				050E0F5628EB61660080C562 /* ConfigurationsWindowController.swift in Sources */,
 				050E0F1C28EB3FEE0080C562 /* TableRowView.swift in Sources */,
 				050E0F1A28EB3FD60080C562 /* Bundle.swift in Sources */,
 				050E0E4028EB307B0080C562 /* ApplicationDelegate.swift in Sources */,
@@ -598,6 +606,14 @@
 				050E0F0C28EB3FAB0080C562 /* Base */,
 			);
 			name = CreditViewController.xib;
+			sourceTree = "<group>";
+		};
+		050E0F5B28EB61BF0080C562 /* ConfigurationsWindowController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				050E0F5A28EB61BF0080C562 /* Base */,
+			);
+			name = ConfigurationsWindowController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

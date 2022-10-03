@@ -27,8 +27,9 @@ import Cocoa
 @main
 public class ApplicationDelegate: NSObject, NSApplicationDelegate
 {
-    private let aboutWindowController   = AboutWindowController()
-    private let creditsWindowController = CreditsWindowController()
+    private let aboutWindowController          = AboutWindowController()
+    private let creditsWindowController        = CreditsWindowController()
+    private let configurationsWindowController = ConfigurationsWindowController()
 
     @IBOutlet private var menu: NSMenu!
 
@@ -73,5 +74,19 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate
         }
 
         self.creditsWindowController.window?.makeKeyAndOrderFront( sender )
+    }
+
+    @IBAction
+    public func showConfigurationsWindow( _ sender: Any? )
+    {
+        NSApp.activate( ignoringOtherApps: true )
+
+        if self.configurationsWindowController.window?.isVisible == false
+        {
+            self.configurationsWindowController.window?.layoutIfNeeded()
+            self.configurationsWindowController.window?.center()
+        }
+
+        self.configurationsWindowController.window?.makeKeyAndOrderFront( sender )
     }
 }

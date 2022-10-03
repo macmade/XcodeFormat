@@ -682,13 +682,21 @@
         </menu>
         <menu id="BIo-AU-9zh">
             <items>
+                <menuItem isSeparatorItem="YES" id="pqr-97-dBX"/>
+                <menuItem isSeparatorItem="YES" id="EhO-ih-789"/>
                 <menuItem title="About Xcode Format..." id="KU9-Wy-x5J">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="showAboutWindow:" target="Voe-Tx-rLC" id="AzQ-a9-uF6"/>
                     </connections>
                 </menuItem>
-                <menuItem isSeparatorItem="YES" id="pqr-97-dBX"/>
+                <menuItem title="Manage Configurations..." id="M2X-6L-vcy">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showConfigurationsWindow:" target="Voe-Tx-rLC" id="pwB-ZE-Nd0"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="ZSC-iL-58n"/>
                 <menuItem title="Quit" keyEquivalent="q" id="nve-ZP-rii">
                     <connections>
                         <action selector="terminate:" target="-1" id="bf6-Wb-wSy"/>
