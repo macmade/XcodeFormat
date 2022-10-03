@@ -12,7 +12,11 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="Voe-Tx-rLC" customClass="ApplicationDelegate" customModule="Xcode_Format" customModuleProvider="target"/>
+        <customObject id="Voe-Tx-rLC" customClass="ApplicationDelegate" customModule="Xcode_Format" customModuleProvider="target">
+            <connections>
+                <outlet property="menu" destination="BIo-AU-9zh" id="FLg-GZ-Gfn"/>
+            </connections>
+        </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
@@ -675,6 +679,24 @@
                 </menuItem>
             </items>
             <point key="canvasLocation" x="200" y="121"/>
+        </menu>
+        <menu id="BIo-AU-9zh">
+            <items>
+                <menuItem title="About Xcode Format..." id="KU9-Wy-x5J">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showAboutWindow:" target="Voe-Tx-rLC" id="AzQ-a9-uF6"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="pqr-97-dBX"/>
+                <menuItem isSeparatorItem="YES" id="iBc-A8-mw6"/>
+                <menuItem title="Quit" keyEquivalent="q" id="nve-ZP-rii">
+                    <connections>
+                        <action selector="terminate:" target="-1" id="bf6-Wb-wSy"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="64" y="441"/>
         </menu>
     </objects>
 </document>

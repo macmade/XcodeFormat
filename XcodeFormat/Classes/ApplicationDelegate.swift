@@ -27,25 +27,31 @@ import Cocoa
 @main
 public class ApplicationDelegate: NSObject, NSApplicationDelegate
 {
-    private let mainWindowController    = MainWindowController()
     private let aboutWindowController   = AboutWindowController()
     private let creditsWindowController = CreditsWindowController()
-    
+
+    @IBOutlet private var menu: NSMenu!
+
+    private var statusItem: NSStatusItem?
+
     public func applicationDidFinishLaunching( _ notification: Notification )
     {
-        self.mainWindowController.window?.layoutIfNeeded()
-        self.mainWindowController.window?.center()
-        self.mainWindowController.window?.makeKeyAndOrderFront( nil )
+        self.statusItem                        = NSStatusBar.system.statusItem( withLength: NSStatusItem.squareLength )
+        self.statusItem?.button?.image         = NSImage( systemSymbolName: "curlybraces", accessibilityDescription: nil )
+        self.statusItem?.button?.imagePosition = .imageLeading
+        self.statusItem?.menu                  = self.menu
     }
 
     public func applicationShouldTerminateAfterLastWindowClosed( _ sender: NSApplication ) -> Bool
     {
-        true
+        false
     }
 
     @IBAction
     public func showAboutWindow( _ sender: Any? )
     {
+        NSApp.activate( ignoringOtherApps: true )
+
         if self.aboutWindowController.window?.isVisible == false
         {
             self.aboutWindowController.window?.layoutIfNeeded()
@@ -58,6 +64,8 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate
     @IBAction
     public func showCreditsWindow( _ sender: Any? )
     {
+        NSApp.activate( ignoringOtherApps: true )
+
         if self.creditsWindowController.window?.isVisible == false
         {
             self.creditsWindowController.window?.layoutIfNeeded()

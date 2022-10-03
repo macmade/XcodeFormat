@@ -10,8 +10,6 @@
 		050E0E4028EB307B0080C562 /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E0E3F28EB307B0080C562 /* ApplicationDelegate.swift */; };
 		050E0E4228EB307C0080C562 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 050E0E4128EB307C0080C562 /* Assets.xcassets */; };
 		050E0E4528EB307C0080C562 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 050E0E4328EB307C0080C562 /* MainMenu.xib */; };
-		050E0F0128EB3EB40080C562 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E0F0028EB3EB40080C562 /* MainWindowController.swift */; };
-		050E0F0428EB3EC10080C562 /* MainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 050E0F0628EB3EC10080C562 /* MainWindowController.xib */; };
 		050E0F0D28EB3FAB0080C562 /* AboutWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 050E0F0728EB3FAB0080C562 /* AboutWindowController.xib */; };
 		050E0F0E28EB3FAB0080C562 /* CreditsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 050E0F0928EB3FAB0080C562 /* CreditsWindowController.xib */; };
 		050E0F0F28EB3FAB0080C562 /* CreditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 050E0F0B28EB3FAB0080C562 /* CreditViewController.xib */; };
@@ -134,8 +132,6 @@
 		050E0EF428EB3C8B0080C562 /* FUNDING.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = FUNDING.yml; sourceTree = "<group>"; };
 		050E0EF528EB3C8B0080C562 /* Debug - zld.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Debug - zld.xcconfig"; sourceTree = "<group>"; };
 		050E0EF928EB3DFE0080C562 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		050E0F0028EB3EB40080C562 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
-		050E0F0528EB3EC10080C562 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainWindowController.xib; sourceTree = "<group>"; };
 		050E0F0828EB3FAB0080C562 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AboutWindowController.xib; sourceTree = "<group>"; };
 		050E0F0A28EB3FAB0080C562 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CreditsWindowController.xib; sourceTree = "<group>"; };
 		050E0F0C28EB3FAB0080C562 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CreditViewController.xib; sourceTree = "<group>"; };
@@ -346,7 +342,6 @@
 				050E0F1028EB3FB10080C562 /* CreditsWindowController.swift */,
 				050E0F1228EB3FB10080C562 /* CreditViewController.swift */,
 				050E0F1828EB3FD60080C562 /* Extensions */,
-				050E0F0028EB3EB40080C562 /* MainWindowController.swift */,
 				050E0F1B28EB3FEE0080C562 /* TableRowView.swift */,
 			);
 			path = Classes;
@@ -360,7 +355,6 @@
 				050E0F0928EB3FAB0080C562 /* CreditsWindowController.xib */,
 				050E0F0B28EB3FAB0080C562 /* CreditViewController.xib */,
 				050E0E4328EB307C0080C562 /* MainMenu.xib */,
-				050E0F0628EB3EC10080C562 /* MainWindowController.xib */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -502,7 +496,6 @@
 				050E0F0D28EB3FAB0080C562 /* AboutWindowController.xib in Resources */,
 				050E0F2328EB40D90080C562 /* License-SwiftFormat.txt in Resources */,
 				050E0F0E28EB3FAB0080C562 /* CreditsWindowController.xib in Resources */,
-				050E0F0428EB3EC10080C562 /* MainWindowController.xib in Resources */,
 				050E0E4528EB307C0080C562 /* MainMenu.xib in Resources */,
 				050E0F0F28EB3FAB0080C562 /* CreditViewController.xib in Resources */,
 			);
@@ -545,7 +538,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				050E0F1C28EB3FEE0080C562 /* TableRowView.swift in Sources */,
-				050E0F0128EB3EB40080C562 /* MainWindowController.swift in Sources */,
 				050E0F1A28EB3FD60080C562 /* Bundle.swift in Sources */,
 				050E0E4028EB307B0080C562 /* ApplicationDelegate.swift in Sources */,
 				050E0F1628EB3FB20080C562 /* CreditViewController.swift in Sources */,
@@ -582,14 +574,6 @@
 				050E0E4428EB307C0080C562 /* Base */,
 			);
 			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-		050E0F0628EB3EC10080C562 /* MainWindowController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				050E0F0528EB3EC10080C562 /* Base */,
-			);
-			name = MainWindowController.xib;
 			sourceTree = "<group>";
 		};
 		050E0F0728EB3FAB0080C562 /* AboutWindowController.xib */ = {

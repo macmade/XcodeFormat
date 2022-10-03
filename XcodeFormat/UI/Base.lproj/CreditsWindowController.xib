@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CreditsWindowController" customModule="Uncrustifier" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="CreditsWindowController" customModule="Xcode_Format" customModuleProvider="target">
             <connections>
                 <outlet property="arrayController" destination="p4X-X0-zB2" id="Sdt-yZ-Gaa"/>
                 <outlet property="contentView" destination="0Om-kg-wEk" id="b5e-He-cpy"/>
@@ -19,7 +19,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="750" height="400"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="3008" height="1228"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1710" height="1069"/>
             <value key="minSize" type="size" width="750" height="400"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="750" height="400"/>
@@ -41,7 +41,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="270" height="400"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="55" viewBased="YES" id="803-I0-DbB">
+                                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="55" viewBased="YES" id="803-I0-DbB">
                                                             <rect key="frame" x="0.0" y="0.0" width="250" height="380"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
