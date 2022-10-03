@@ -24,7 +24,48 @@
 		050E0F1E28EB3FF30080C562 /* NSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E0F1D28EB3FF30080C562 /* NSView.swift */; };
 		050E0F2228EB40D90080C562 /* License-Uncrustify.txt in Resources */ = {isa = PBXBuildFile; fileRef = 050E0F2028EB40D90080C562 /* License-Uncrustify.txt */; };
 		050E0F2328EB40D90080C562 /* License-SwiftFormat.txt in Resources */ = {isa = PBXBuildFile; fileRef = 050E0F2128EB40D90080C562 /* License-SwiftFormat.txt */; };
+		050E0F2B28EB49210080C562 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050E0F2A28EB49210080C562 /* Cocoa.framework */; };
+		050E0F2D28EB49210080C562 /* XcodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050E0F2C28EB49210080C562 /* XcodeKit.framework */; };
+		050E0F3028EB49210080C562 /* SourceEditorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E0F2F28EB49210080C562 /* SourceEditorExtension.swift */; };
+		050E0F3228EB49210080C562 /* SourceEditorCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E0F3128EB49210080C562 /* SourceEditorCommand.swift */; };
+		050E0F3828EB49210080C562 /* Xcode Format Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 050E0F2828EB49210080C562 /* Xcode Format Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		050E0F3D28EB49850080C562 /* XcodeKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 050E0F2C28EB49210080C562 /* XcodeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		050E0F3528EB49210080C562 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 050E0E3428EB307B0080C562 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 050E0F2728EB49210080C562;
+			remoteInfo = EditorExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		050E0F3728EB49210080C562 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				050E0F3828EB49210080C562 /* Xcode Format Extension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		050E0F3C28EB49790080C562 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				050E0F3D28EB49850080C562 /* XcodeKit.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		050E0E3C28EB307B0080C562 /* Xcode Format.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Xcode Format.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +134,13 @@
 		050E0F1D28EB3FF30080C562 /* NSView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSView.swift; sourceTree = "<group>"; };
 		050E0F2028EB40D90080C562 /* License-Uncrustify.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "License-Uncrustify.txt"; sourceTree = "<group>"; };
 		050E0F2128EB40D90080C562 /* License-SwiftFormat.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "License-SwiftFormat.txt"; sourceTree = "<group>"; };
+		050E0F2828EB49210080C562 /* Xcode Format Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Xcode Format Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		050E0F2A28EB49210080C562 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		050E0F2C28EB49210080C562 /* XcodeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XcodeKit.framework; path = Library/Frameworks/XcodeKit.framework; sourceTree = DEVELOPER_DIR; };
+		050E0F2F28EB49210080C562 /* SourceEditorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorExtension.swift; sourceTree = "<group>"; };
+		050E0F3128EB49210080C562 /* SourceEditorCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorCommand.swift; sourceTree = "<group>"; };
+		050E0F3328EB49210080C562 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		050E0F3428EB49210080C562 /* EditorExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EditorExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +148,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		050E0F2528EB49210080C562 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				050E0F2B28EB49210080C562 /* Cocoa.framework in Frameworks */,
+				050E0F2D28EB49210080C562 /* XcodeKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +168,8 @@
 			children = (
 				050E0EBE28EB3C8B0080C562 /* xcconfig */,
 				050E0E3E28EB307B0080C562 /* XcodeFormat */,
+				050E0F2E28EB49210080C562 /* EditorExtension */,
+				050E0F2928EB49210080C562 /* Frameworks */,
 				050E0E3D28EB307B0080C562 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -119,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				050E0E3C28EB307B0080C562 /* Xcode Format.app */,
+				050E0F2828EB49210080C562 /* Xcode Format Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -307,6 +367,26 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		050E0F2928EB49210080C562 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				050E0F2A28EB49210080C562 /* Cocoa.framework */,
+				050E0F2C28EB49210080C562 /* XcodeKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		050E0F2E28EB49210080C562 /* EditorExtension */ = {
+			isa = PBXGroup;
+			children = (
+				050E0F2F28EB49210080C562 /* SourceEditorExtension.swift */,
+				050E0F3128EB49210080C562 /* SourceEditorCommand.swift */,
+				050E0F3328EB49210080C562 /* Info.plist */,
+				050E0F3428EB49210080C562 /* EditorExtension.entitlements */,
+			);
+			path = EditorExtension;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -318,15 +398,35 @@
 				050E0E3928EB307B0080C562 /* Frameworks */,
 				050E0EFD28EB3E7C0080C562 /* Set Bundle Version */,
 				050E0E3A28EB307B0080C562 /* Resources */,
+				050E0F3728EB49210080C562 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				050E0F3628EB49210080C562 /* PBXTargetDependency */,
 			);
 			name = "Xcode Format";
 			productName = XcodeFormat;
 			productReference = 050E0E3C28EB307B0080C562 /* Xcode Format.app */;
 			productType = "com.apple.product-type.application";
+		};
+		050E0F2728EB49210080C562 /* Xcode Format Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 050E0F3928EB49210080C562 /* Build configuration list for PBXNativeTarget "Xcode Format Extension" */;
+			buildPhases = (
+				050E0F2428EB49210080C562 /* Sources */,
+				050E0F2528EB49210080C562 /* Frameworks */,
+				050E0F2628EB49210080C562 /* Resources */,
+				050E0F3C28EB49790080C562 /* Copy Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Xcode Format Extension";
+			productName = EditorExtension;
+			productReference = 050E0F2828EB49210080C562 /* Xcode Format Extension.appex */;
+			productType = "com.apple.product-type.xcode-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -339,6 +439,9 @@
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					050E0E3B28EB307B0080C562 = {
+						CreatedOnToolsVersion = 14.0.1;
+					};
+					050E0F2728EB49210080C562 = {
 						CreatedOnToolsVersion = 14.0.1;
 					};
 				};
@@ -357,6 +460,7 @@
 			projectRoot = "";
 			targets = (
 				050E0E3B28EB307B0080C562 /* Xcode Format */,
+				050E0F2728EB49210080C562 /* Xcode Format Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -374,6 +478,13 @@
 				050E0F0428EB3EC10080C562 /* MainWindowController.xib in Resources */,
 				050E0E4528EB307C0080C562 /* MainMenu.xib in Resources */,
 				050E0F0F28EB3FAB0080C562 /* CreditViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		050E0F2628EB49210080C562 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,7 +508,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\nif [ \"${CONFIGURATION}\" = \"Release\" ]; then\n    plist=\"XcodeFormat/Info.plist\"\n    rev=$(git rev-list HEAD | wc -l)\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $rev\" \"$plist\"\nfi\n";
+			shellScript = "#!/bin/bash\nif [ \"${CONFIGURATION}\" = \"Release\" ]; then\n    plist1=\"XcodeFormat/Info.plist\"\n    plist2=\"EditorExtension/Info.plist\"\n    rev=$(git rev-list HEAD | wc -l)\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $rev\" \"$plist1\"\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $rev\" \"$plist2\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -418,7 +529,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		050E0F2428EB49210080C562 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				050E0F3028EB49210080C562 /* SourceEditorExtension.swift in Sources */,
+				050E0F3228EB49210080C562 /* SourceEditorCommand.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		050E0F3628EB49210080C562 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 050E0F2728EB49210080C562 /* Xcode Format Extension */;
+			targetProxy = 050E0F3528EB49210080C562 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		050E0E4328EB307C0080C562 /* MainMenu.xib */ = {
@@ -468,6 +596,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 050E0EC328EB3C8B0080C562 /* Debug.xcconfig */;
 			buildSettings = {
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 XS-Labs. All rights reserved.";
 			};
 			name = Debug;
 		};
@@ -475,18 +604,19 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 050E0EC428EB3C8B0080C562 /* Release.xcconfig */;
 			buildSettings = {
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 XS-Labs. All rights reserved.";
 			};
 			name = Release;
 		};
 		050E0E4A28EB307C0080C562 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = XcodeFormat/XcodeFormat.entitlements;
 				INFOPLIST_FILE = XcodeFormat/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 XS-Labs. All rights reserved.";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -501,12 +631,12 @@
 		050E0E4B28EB307C0080C562 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = XcodeFormat/XcodeFormat.entitlements;
 				INFOPLIST_FILE = XcodeFormat/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 XS-Labs. All rights reserved.";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -515,6 +645,40 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xs-labs.XcodeFormat";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		050E0F3A28EB49210080C562 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = EditorExtension/EditorExtension.entitlements;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = EditorExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.xs-labs.XcodeFormat.EditorExtension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		050E0F3B28EB49210080C562 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = EditorExtension/EditorExtension.entitlements;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = EditorExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.xs-labs.XcodeFormat.EditorExtension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -535,6 +699,15 @@
 			buildConfigurations = (
 				050E0E4A28EB307C0080C562 /* Debug */,
 				050E0E4B28EB307C0080C562 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		050E0F3928EB49210080C562 /* Build configuration list for PBXNativeTarget "Xcode Format Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				050E0F3A28EB49210080C562 /* Debug */,
+				050E0F3B28EB49210080C562 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
