@@ -30,6 +30,8 @@
 		050E0F3228EB49210080C562 /* SourceEditorCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E0F3128EB49210080C562 /* SourceEditorCommand.swift */; };
 		050E0F3828EB49210080C562 /* Xcode Format Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 050E0F2828EB49210080C562 /* Xcode Format Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		050E0F3D28EB49850080C562 /* XcodeKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 050E0F2C28EB49210080C562 /* XcodeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		050E0F5128EB5C980080C562 /* swiftformat in Copy Executables */ = {isa = PBXBuildFile; fileRef = 050E0F4C28EB5C4C0080C562 /* swiftformat */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		050E0F5228EB5C990080C562 /* uncrustify in Copy Executables */ = {isa = PBXBuildFile; fileRef = 050E0F4E28EB5C580080C562 /* uncrustify */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,18 @@
 				050E0F3D28EB49850080C562 /* XcodeKit.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		050E0F5028EB5C890080C562 /* Copy Executables */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				050E0F5128EB5C980080C562 /* swiftformat in Copy Executables */,
+				050E0F5228EB5C990080C562 /* uncrustify in Copy Executables */,
+			);
+			name = "Copy Executables";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -141,6 +155,8 @@
 		050E0F3128EB49210080C562 /* SourceEditorCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorCommand.swift; sourceTree = "<group>"; };
 		050E0F3328EB49210080C562 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		050E0F3428EB49210080C562 /* EditorExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EditorExtension.entitlements; sourceTree = "<group>"; };
+		050E0F4C28EB5C4C0080C562 /* swiftformat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = swiftformat; path = "Submodules/swiftformat-build/dist/swiftformat"; sourceTree = SOURCE_ROOT; };
+		050E0F4E28EB5C580080C562 /* uncrustify */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = uncrustify; path = "Submodules/uncrustify-build/dist/bin/uncrustify"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -379,12 +395,22 @@
 		050E0F2E28EB49210080C562 /* EditorExtension */ = {
 			isa = PBXGroup;
 			children = (
+				050E0F4B28EB5C0B0080C562 /* Executables */,
 				050E0F2F28EB49210080C562 /* SourceEditorExtension.swift */,
 				050E0F3128EB49210080C562 /* SourceEditorCommand.swift */,
 				050E0F3328EB49210080C562 /* Info.plist */,
 				050E0F3428EB49210080C562 /* EditorExtension.entitlements */,
 			);
 			path = EditorExtension;
+			sourceTree = "<group>";
+		};
+		050E0F4B28EB5C0B0080C562 /* Executables */ = {
+			isa = PBXGroup;
+			children = (
+				050E0F4C28EB5C4C0080C562 /* swiftformat */,
+				050E0F4E28EB5C580080C562 /* uncrustify */,
+			);
+			name = Executables;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -418,6 +444,7 @@
 				050E0F2528EB49210080C562 /* Frameworks */,
 				050E0F2628EB49210080C562 /* Resources */,
 				050E0F3C28EB49790080C562 /* Copy Frameworks */,
+				050E0F5028EB5C890080C562 /* Copy Executables */,
 			);
 			buildRules = (
 			);
