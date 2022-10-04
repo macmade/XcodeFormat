@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21225" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21225"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="ConfigurationWindowController" customModule="Xcode_Format" customModuleProvider="target">
+            <connections>
+                <outlet property="window" destination="QvC-M9-y7g" id="7Ut-3z-dUh"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Configuration" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" id="QvC-M9-y7g">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1710" height="1069"/>
+            <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
+                <rect key="frame" x="0.0" y="0.0" width="480" height="250"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FEU-d2-7eg">
+                        <rect key="frame" x="20" y="69" width="440" height="151"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="843-qf-6El">
+                                <rect key="frame" x="-2" y="135" width="44" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Name:" id="Vvp-W9-yry">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ayR-hX-6a8">
+                                <rect key="frame" x="0.0" y="106" width="440" height="21"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="0nl-2N-dV6">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.name" id="Hfy-Sw-NqJ">
+                                        <dictionary key="options">
+                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fW7-8O-INP">
+                                <rect key="frame" x="-2" y="82" width="197" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="SwiftFormat Configuration URL:" id="6zw-Pe-Go6">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6sK-T9-7xW">
+                                <rect key="frame" x="0.0" y="53" width="440" height="21"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="Rqo-Fr-wWI">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.swiftFormat" id="ocw-Bv-2Vv">
+                                        <dictionary key="options">
+                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eKs-cD-n4M">
+                                <rect key="frame" x="-2" y="29" width="186" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Uncrustify Configuration URL:" id="hOD-d2-tPz">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="l0B-Pl-oSA">
+                                <rect key="frame" x="0.0" y="0.0" width="440" height="21"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="B86-fH-U7b">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="self.uncrustify" id="hrW-fS-Brf">
+                                        <dictionary key="options">
+                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="6sK-T9-7xW" secondAttribute="trailing" id="1Y3-0F-dqa"/>
+                            <constraint firstItem="6sK-T9-7xW" firstAttribute="leading" secondItem="FEU-d2-7eg" secondAttribute="leading" id="5SY-cx-LHc"/>
+                            <constraint firstAttribute="trailing" secondItem="ayR-hX-6a8" secondAttribute="trailing" id="GR8-da-4dv"/>
+                            <constraint firstAttribute="trailing" secondItem="l0B-Pl-oSA" secondAttribute="trailing" id="i7K-a7-DOf"/>
+                            <constraint firstItem="ayR-hX-6a8" firstAttribute="leading" secondItem="FEU-d2-7eg" secondAttribute="leading" id="sjA-0D-Nzo"/>
+                            <constraint firstItem="l0B-Pl-oSA" firstAttribute="leading" secondItem="FEU-d2-7eg" secondAttribute="leading" id="tYV-0D-jvD"/>
+                        </constraints>
+                        <visibilityPriorities>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                        </visibilityPriorities>
+                        <customSpacing>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                        </customSpacing>
+                    </stackView>
+                    <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="LqY-K0-Hnk">
+                        <rect key="frame" x="12" y="58" width="456" height="5"/>
+                    </box>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xTL-vD-iK2">
+                        <rect key="frame" x="329" y="13" width="76" height="32"/>
+                        <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zWG-q7-RID">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="cancel:" target="-2" id="rAL-9D-UsP"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xFS-6m-k3k">
+                        <rect key="frame" x="403" y="13" width="64" height="32"/>
+                        <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iUv-ba-hZw">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="save:" target="-2" id="4MB-XV-UTP"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="FEU-d2-7eg" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="30" id="EUq-1T-JgA"/>
+                    <constraint firstItem="xTL-vD-iK2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" symbolic="YES" id="Eji-oF-kVb"/>
+                    <constraint firstItem="LqY-K0-Hnk" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="12" symbolic="YES" id="IgY-sn-rvH"/>
+                    <constraint firstItem="xFS-6m-k3k" firstAttribute="leading" secondItem="xTL-vD-iK2" secondAttribute="trailing" constant="12" symbolic="YES" id="OJ2-mV-4Sn"/>
+                    <constraint firstAttribute="trailing" secondItem="FEU-d2-7eg" secondAttribute="trailing" constant="20" symbolic="YES" id="Txv-Hb-gsW"/>
+                    <constraint firstItem="xTL-vD-iK2" firstAttribute="centerY" secondItem="xFS-6m-k3k" secondAttribute="centerY" id="eNB-RO-BAA"/>
+                    <constraint firstItem="xFS-6m-k3k" firstAttribute="top" secondItem="LqY-K0-Hnk" secondAttribute="bottom" constant="20" symbolic="YES" id="gxw-BP-KWN"/>
+                    <constraint firstAttribute="trailing" secondItem="LqY-K0-Hnk" secondAttribute="trailing" constant="12" symbolic="YES" id="oDf-kd-NnP"/>
+                    <constraint firstItem="FEU-d2-7eg" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" symbolic="YES" id="oKe-8K-Qqu"/>
+                    <constraint firstAttribute="bottom" secondItem="xFS-6m-k3k" secondAttribute="bottom" constant="20" symbolic="YES" id="u7Y-lW-NJJ"/>
+                    <constraint firstItem="LqY-K0-Hnk" firstAttribute="top" secondItem="FEU-d2-7eg" secondAttribute="bottom" constant="8" symbolic="YES" id="u8F-XF-yrQ"/>
+                    <constraint firstAttribute="trailing" secondItem="xFS-6m-k3k" secondAttribute="trailing" constant="20" symbolic="YES" id="wX8-pw-Og8"/>
+                </constraints>
+            </view>
+            <point key="canvasLocation" x="90" y="144"/>
+        </window>
+    </objects>
+</document>

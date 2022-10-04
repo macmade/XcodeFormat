@@ -32,6 +32,14 @@
 		050E0F5228EB5C990080C562 /* uncrustify in Copy Executables */ = {isa = PBXBuildFile; fileRef = 050E0F4E28EB5C580080C562 /* uncrustify */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		050E0F5628EB61660080C562 /* ConfigurationsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E0F5528EB61660080C562 /* ConfigurationsWindowController.swift */; };
 		050E0F5928EB61BF0080C562 /* ConfigurationsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 050E0F5B28EB61BF0080C562 /* ConfigurationsWindowController.xib */; };
+		050E0F5F28EB65BA0080C562 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E0F5E28EB65BA0080C562 /* Preferences.swift */; };
+		050E0F6028EB65BA0080C562 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E0F5E28EB65BA0080C562 /* Preferences.swift */; };
+		050E0F6228EB66390080C562 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E0F6128EB66390080C562 /* Configuration.swift */; };
+		050E0F6328EB66390080C562 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E0F6128EB66390080C562 /* Configuration.swift */; };
+		050E0F6528EB83BB0080C562 /* ArrayIsEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E0F6428EB83BB0080C562 /* ArrayIsEmpty.swift */; };
+		050E0F6728EB83CC0080C562 /* ArrayIsNotEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E0F6628EB83CC0080C562 /* ArrayIsNotEmpty.swift */; };
+		050E0F6928EB84C90080C562 /* ConfigurationWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E0F6828EB84C90080C562 /* ConfigurationWindowController.swift */; };
+		050E0F6B28EB84D30080C562 /* ConfigurationWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 050E0F6A28EB84D30080C562 /* ConfigurationWindowController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +165,12 @@
 		050E0F4E28EB5C580080C562 /* uncrustify */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = uncrustify; path = "Submodules/uncrustify-build/dist/bin/uncrustify"; sourceTree = SOURCE_ROOT; };
 		050E0F5528EB61660080C562 /* ConfigurationsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationsWindowController.swift; sourceTree = "<group>"; };
 		050E0F5A28EB61BF0080C562 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ConfigurationsWindowController.xib; sourceTree = "<group>"; };
+		050E0F5E28EB65BA0080C562 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		050E0F6128EB66390080C562 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		050E0F6428EB83BB0080C562 /* ArrayIsEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayIsEmpty.swift; sourceTree = "<group>"; };
+		050E0F6628EB83CC0080C562 /* ArrayIsNotEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayIsNotEmpty.swift; sourceTree = "<group>"; };
+		050E0F6828EB84C90080C562 /* ConfigurationWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationWindowController.swift; sourceTree = "<group>"; };
+		050E0F6A28EB84D30080C562 /* ConfigurationWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfigurationWindowController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				050E0EBE28EB3C8B0080C562 /* xcconfig */,
+				050E0F5C28EB659F0080C562 /* Shared */,
 				050E0E3E28EB307B0080C562 /* XcodeFormat */,
 				050E0F2E28EB49210080C562 /* EditorExtension */,
 				050E0F2928EB49210080C562 /* Frameworks */,
@@ -342,7 +357,10 @@
 			children = (
 				050E0F1328EB3FB20080C562 /* AboutWindowController.swift */,
 				050E0E3F28EB307B0080C562 /* ApplicationDelegate.swift */,
+				050E0F6428EB83BB0080C562 /* ArrayIsEmpty.swift */,
+				050E0F6628EB83CC0080C562 /* ArrayIsNotEmpty.swift */,
 				050E0F5528EB61660080C562 /* ConfigurationsWindowController.swift */,
+				050E0F6828EB84C90080C562 /* ConfigurationWindowController.swift */,
 				050E0F1128EB3FB10080C562 /* Credit.swift */,
 				050E0F1028EB3FB10080C562 /* CreditsWindowController.swift */,
 				050E0F1228EB3FB10080C562 /* CreditViewController.swift */,
@@ -357,9 +375,10 @@
 			children = (
 				050E0F0728EB3FAB0080C562 /* AboutWindowController.xib */,
 				050E0E4128EB307C0080C562 /* Assets.xcassets */,
+				050E0F5B28EB61BF0080C562 /* ConfigurationsWindowController.xib */,
+				050E0F6A28EB84D30080C562 /* ConfigurationWindowController.xib */,
 				050E0F0928EB3FAB0080C562 /* CreditsWindowController.xib */,
 				050E0F0B28EB3FAB0080C562 /* CreditViewController.xib */,
-				050E0F5B28EB61BF0080C562 /* ConfigurationsWindowController.xib */,
 				050E0E4328EB307C0080C562 /* MainMenu.xib */,
 			);
 			path = UI;
@@ -411,6 +430,15 @@
 				050E0F4E28EB5C580080C562 /* uncrustify */,
 			);
 			name = Executables;
+			sourceTree = "<group>";
+		};
+		050E0F5C28EB659F0080C562 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				050E0F5E28EB65BA0080C562 /* Preferences.swift */,
+				050E0F6128EB66390080C562 /* Configuration.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -502,6 +530,7 @@
 				050E0F5928EB61BF0080C562 /* ConfigurationsWindowController.xib in Resources */,
 				050E0F0D28EB3FAB0080C562 /* AboutWindowController.xib in Resources */,
 				050E0F2328EB40D90080C562 /* License-SwiftFormat.txt in Resources */,
+				050E0F6B28EB84D30080C562 /* ConfigurationWindowController.xib in Resources */,
 				050E0F0E28EB3FAB0080C562 /* CreditsWindowController.xib in Resources */,
 				050E0E4528EB307C0080C562 /* MainMenu.xib in Resources */,
 				050E0F0F28EB3FAB0080C562 /* CreditViewController.xib in Resources */,
@@ -547,12 +576,17 @@
 				050E0F5628EB61660080C562 /* ConfigurationsWindowController.swift in Sources */,
 				050E0F1C28EB3FEE0080C562 /* TableRowView.swift in Sources */,
 				050E0F1A28EB3FD60080C562 /* Bundle.swift in Sources */,
+				050E0F6528EB83BB0080C562 /* ArrayIsEmpty.swift in Sources */,
+				050E0F6928EB84C90080C562 /* ConfigurationWindowController.swift in Sources */,
 				050E0E4028EB307B0080C562 /* ApplicationDelegate.swift in Sources */,
 				050E0F1628EB3FB20080C562 /* CreditViewController.swift in Sources */,
+				050E0F6728EB83CC0080C562 /* ArrayIsNotEmpty.swift in Sources */,
 				050E0F1728EB3FB20080C562 /* AboutWindowController.swift in Sources */,
+				050E0F5F28EB65BA0080C562 /* Preferences.swift in Sources */,
 				050E0F1528EB3FB20080C562 /* Credit.swift in Sources */,
 				050E0F1E28EB3FF30080C562 /* NSView.swift in Sources */,
 				050E0F1428EB3FB20080C562 /* CreditsWindowController.swift in Sources */,
+				050E0F6228EB66390080C562 /* Configuration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,6 +596,8 @@
 			files = (
 				050E0F3028EB49210080C562 /* SourceEditorExtension.swift in Sources */,
 				050E0F3228EB49210080C562 /* SourceEditorCommand.swift in Sources */,
+				050E0F6328EB66390080C562 /* Configuration.swift in Sources */,
+				050E0F6028EB65BA0080C562 /* Preferences.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

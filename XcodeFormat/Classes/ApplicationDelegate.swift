@@ -25,7 +25,7 @@
 import Cocoa
 
 @main
-public class ApplicationDelegate: NSObject, NSApplicationDelegate
+public class ApplicationDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate
 {
     private let aboutWindowController          = AboutWindowController()
     private let creditsWindowController        = CreditsWindowController()
@@ -33,7 +33,8 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate
 
     @IBOutlet private var menu: NSMenu!
 
-    private var statusItem: NSStatusItem?
+    private var statusItem:             NSStatusItem?
+    private var configurationsObserver: NSKeyValueObservation?
 
     public func applicationDidFinishLaunching( _ notification: Notification )
     {
@@ -41,11 +42,80 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate
         self.statusItem?.button?.image         = NSImage( systemSymbolName: "curlybraces", accessibilityDescription: nil )
         self.statusItem?.button?.imagePosition = .imageLeading
         self.statusItem?.menu                  = self.menu
+
+        self.configurationsObserver = Preferences.shared.observe( \.configurations )
+        {
+            [ weak self ] _, _ in self?.rebuildMenu()
+        }
+
+        if Preferences.shared.configurations.isEmpty
+        {
+            Preferences.shared.configurations        = Configuration.defaultConfigurations
+            Preferences.shared.selectedConfiguration = Preferences.shared.configurations.first
+        }
+
+        self.rebuildMenu()
     }
 
     public func applicationShouldTerminateAfterLastWindowClosed( _ sender: NSApplication ) -> Bool
     {
         false
+    }
+
+    private func rebuildMenu()
+    {
+        var items = self.menu.items.filter
+        {
+            $0.representedObject is Configuration == false
+        }
+
+        Preferences.shared.configurations.sorted
+        {
+            $0.name > $1.name
+        }
+        .forEach
+        {
+            let item               = NSMenuItem( title: $0.name, action: #selector( self.selectConfiguration( _: ) ), keyEquivalent: "" )
+            item.target            = self
+            item.representedObject = $0
+
+            items.insert( item, at: 0 )
+        }
+
+        self.menu.items = items
+    }
+
+    public func menuWillOpen( _ menu: NSMenu )
+    {
+        if menu != self.menu
+        {
+            return
+        }
+
+        let selected = Preferences.shared.selectedConfiguration
+
+        self.menu.items.forEach
+        {
+            guard let configuration = $0.representedObject as? Configuration
+            else
+            {
+                return
+            }
+
+            $0.state = configuration == selected ? .on : .off
+        }
+    }
+
+    @objc private func selectConfiguration( _ sender: Any? )
+    {
+        guard let item          = sender as? NSMenuItem,
+              let configuration = item.representedObject as? Configuration
+        else
+        {
+            return
+        }
+
+        Preferences.shared.selectedConfiguration = configuration
     }
 
     @IBAction

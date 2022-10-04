@@ -703,6 +703,9 @@
                     </connections>
                 </menuItem>
             </items>
+            <connections>
+                <outlet property="delegate" destination="Voe-Tx-rLC" id="86Q-Kk-v4w"/>
+            </connections>
             <point key="canvasLocation" x="64" y="441"/>
         </menu>
     </objects>

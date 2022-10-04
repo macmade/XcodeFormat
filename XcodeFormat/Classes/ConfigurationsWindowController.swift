@@ -26,6 +26,12 @@ import Cocoa
 
 public class ConfigurationsWindowController: NSWindowController
 {
+    @objc public private( set ) var configurations: [ Configuration ] = []
+
+    @IBOutlet private var arrayController: NSArrayController!
+
+    private var configurationWindowController: ConfigurationWindowController?
+
     public init()
     {
         super.init( window: nil )
@@ -44,5 +50,92 @@ public class ConfigurationsWindowController: NSWindowController
     public override func windowDidLoad()
     {
         super.windowDidLoad()
+
+        self.arrayController.sortDescriptors = [ NSSortDescriptor( key: "name", ascending: true ) ]
+
+        self.reload()
+    }
+
+    public func reload()
+    {
+        if let content = self.arrayController.content as? [ Any ]
+        {
+            self.arrayController.remove( contentsOf: content )
+        }
+
+        Preferences.shared.configurations.forEach
+        {
+            self.arrayController.addObject( $0 )
+        }
+    }
+
+    @IBAction
+    private func new( _ sender: Any? )
+    {
+        let controller = ConfigurationWindowController()
+
+        guard let window        = self.window,
+              let sheet         = controller.window
+        else
+        {
+            NSSound.beep()
+
+            return
+        }
+
+        self.configurationWindowController = controller
+
+        window.beginSheet( sheet )
+        {
+            if $0 == .OK, let configuration = controller.configuration
+            {
+                self.arrayController.addObject( configuration )
+
+                Preferences.shared.configurations = self.arrayController.content as? [ Configuration ] ?? []
+            }
+        }
+    }
+
+    @IBAction
+    private func remove( _ sender: Any? )
+    {
+        guard let configuration = self.arrayController.selectedObjects.first as? Configuration
+        else
+        {
+            NSSound.beep()
+
+            return
+        }
+
+        self.arrayController.removeObject( configuration )
+
+        Preferences.shared.configurations = self.arrayController.content as? [ Configuration ] ?? []
+    }
+
+    @IBAction
+    private func edit( _ sender: Any? )
+    {
+        let controller = ConfigurationWindowController()
+
+        guard let configuration = self.arrayController.selectedObjects.first as? Configuration,
+              let window        = self.window,
+              let sheet         = controller.window
+        else
+        {
+            NSSound.beep()
+
+            return
+        }
+
+        controller.configuration           = configuration
+        self.configurationWindowController = controller
+
+        window.beginSheet( sheet )
+        {
+            if $0 == .OK
+            {
+                Preferences.shared.configurations = self.arrayController.content as? [ Configuration ] ?? []
+            }
+        }
     }
 }
