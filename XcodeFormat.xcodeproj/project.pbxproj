@@ -54,6 +54,7 @@
 		05744ED728EC2EDB00A88503 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05744ED528EC2EDB00A88503 /* String.swift */; };
 		05BED21A28EC4A2A008039F6 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BED21928EC4A2A008039F6 /* Task.swift */; };
 		05BED21B28EC4A2A008039F6 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BED21928EC4A2A008039F6 /* Task.swift */; };
+		05C2595E28EC8233008BDDDE /* XcodeFormat.workflow in Resources */ = {isa = PBXBuildFile; fileRef = 05C2595B28EC8233008BDDDE /* XcodeFormat.workflow */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -218,6 +219,7 @@
 		05744ED228EC2ED400A88503 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		05744ED528EC2EDB00A88503 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		05BED21928EC4A2A008039F6 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		05C2595B28EC8233008BDDDE /* XcodeFormat.workflow */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = XcodeFormat.workflow; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -448,6 +450,7 @@
 		050E0F1F28EB40D90080C562 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				05C2595B28EC8233008BDDDE /* XcodeFormat.workflow */,
 				050E0F2028EB40D90080C562 /* License-Uncrustify.txt */,
 				050E0F2128EB40D90080C562 /* License-SwiftFormat.txt */,
 			);
@@ -623,6 +626,7 @@
 				050E0F2328EB40D90080C562 /* License-SwiftFormat.txt in Resources */,
 				050E0F6B28EB84D30080C562 /* ConfigurationWindowController.xib in Resources */,
 				050E0F0E28EB3FAB0080C562 /* CreditsWindowController.xib in Resources */,
+				05C2595E28EC8233008BDDDE /* XcodeFormat.workflow in Resources */,
 				050E0E4528EB307C0080C562 /* MainMenu.xib in Resources */,
 				050E0F0F28EB3FAB0080C562 /* CreditViewController.xib in Resources */,
 			);

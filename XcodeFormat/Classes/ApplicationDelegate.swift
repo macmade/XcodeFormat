@@ -62,6 +62,7 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate
         }
 
         self.rebuildMenu()
+        self.installWorkflowIfNeeded()
 
         DispatchQueue.main.asyncAfter( deadline: .now() + .seconds( 2 ) )
         {
@@ -72,6 +73,32 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate
     public func applicationShouldTerminateAfterLastWindowClosed( _ sender: NSApplication ) -> Bool
     {
         false
+    }
+
+    private func installWorkflowIfNeeded()
+    {
+        guard let library   = NSSearchPathForDirectoriesInDomains( .libraryDirectory, .userDomainMask, true ).first,
+              let workflow1 = Bundle.main.url( forResource: "XcodeFormat", withExtension: "workflow" )
+        else
+        {
+            return
+        }
+
+        let workflow2 = URL( fileURLWithPath: library ).appendingPathComponent( "Services/XcodeFormat.workflow" )
+        let wflow1    = workflow1.appendingPathComponent( "Contents/document.wflow" )
+        let wflow2    = workflow2.appendingPathComponent( "Contents/document.wflow" )
+
+        if FileManager.default.fileExists( atPath: workflow2.path )
+        {
+            if let sha1 = try? Data( contentsOf: wflow1 ).sha256,
+               let sha2 = try? Data( contentsOf: wflow2 ).sha256,
+                   sha1 == sha2
+            {
+                return
+            }
+        }
+
+        try? FileManager.default.copyItem( at: workflow1, to: workflow2 )
     }
 
     private func rebuildMenu()
