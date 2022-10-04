@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
-import Foundation
 import CryptoKit
+import Foundation
 
 public extension Data
 {

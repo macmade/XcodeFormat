@@ -22,10 +22,11 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
-import Foundation
 import CryptoKit
+import Foundation
 
-@objc public class Configuration: NSObject, Codable
+@objc
+public class Configuration: NSObject, Codable
 {
     @objc public dynamic var name:         String
     @objc public dynamic var swiftFormat:  URL
@@ -145,7 +146,7 @@ import CryptoKit
         {
             error()
             self.download()
-            
+
             return
         }
 
@@ -160,7 +161,6 @@ import CryptoKit
 
     private func copy( url: URL ) -> URL?
     {
-
         guard let sha256    = url.sha256,
               let container = FileManager.sharedContainerURL?.appendingPathComponent( "Configurations" )
         else

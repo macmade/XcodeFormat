@@ -59,7 +59,7 @@ public class Preferences: NSObject
         get
         {
             if let data    = self.defaults?.object( forKey: "configurations" ) as? Data,
-               let decoded = try? PropertyListDecoder().decode( Array< Configuration >.self, from: data )
+               let decoded = try? PropertyListDecoder().decode( [ Configuration ].self, from: data )
             {
                 return decoded
             }

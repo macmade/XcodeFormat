@@ -23,8 +23,8 @@
  ******************************************************************************/
 
 import Foundation
-import XcodeKit
 import UniformTypeIdentifiers
+import XcodeKit
 
 public class SourceEditorCommand: NSObject, XCSourceEditorCommand
 {
