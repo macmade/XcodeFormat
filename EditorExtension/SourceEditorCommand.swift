@@ -29,6 +29,7 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand
 {
     func perform( with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping ( Error? ) -> Void ) -> Void
     {
+        invocation.buffer.completeBuffer = "hello"
         completionHandler( nil )
     }
 }

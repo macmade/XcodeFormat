@@ -23,6 +23,7 @@
  ******************************************************************************/
 
 import Cocoa
+import GitHubUpdates
 
 @main
 public class ApplicationDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate
@@ -31,7 +32,8 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate, NSMenuDelegat
     private let creditsWindowController        = CreditsWindowController()
     private let configurationsWindowController = ConfigurationsWindowController()
 
-    @IBOutlet private var menu: NSMenu!
+    @IBOutlet private var menu:    NSMenu!
+    @IBOutlet private var updater: GitHubUpdater!
 
     private var statusItem:             NSStatusItem?
     private var configurationsObserver: NSKeyValueObservation?
@@ -55,6 +57,11 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate, NSMenuDelegat
         }
 
         self.rebuildMenu()
+
+        DispatchQueue.main.asyncAfter( deadline: .now() + .seconds( 2 ) )
+        {
+            self.updater.checkForUpdatesInBackground()
+        }
     }
 
     public func applicationShouldTerminateAfterLastWindowClosed( _ sender: NSApplication ) -> Bool
@@ -102,11 +109,31 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate, NSMenuDelegat
                 return
             }
 
-            $0.state = configuration == selected ? .on : .off
+            let image    = NSImage( systemSymbolName: "curlybraces.square.fill", accessibilityDescription: nil )
+            let fontOn   = NSFont.boldSystemFont( ofSize: NSFont.systemFontSize )
+            let fontOff  = NSFont.systemFont( ofSize: NSFont.systemFontSize )
+            let colorOn  = NSColor.labelColor
+            let colorOff = NSColor.secondaryLabelColor
+            let imageOn  = image?.withSymbolConfiguration( NSImage.SymbolConfiguration( hierarchicalColor: colorOn ) )
+            let imageOff = image?.withSymbolConfiguration( NSImage.SymbolConfiguration( hierarchicalColor: colorOff ) )
+
+            if configuration == selected
+            {
+                $0.state           = .on
+                $0.image           = imageOn
+                $0.attributedTitle = NSAttributedString( string: $0.title, attributes: [ .font : fontOn, .foregroundColor : colorOn ] )
+            }
+            else
+            {
+                $0.state           = .off
+                $0.image           = imageOff
+                $0.attributedTitle = NSAttributedString( string: $0.title, attributes: [ .font : fontOff, .foregroundColor : colorOff ] )
+            }
         }
     }
 
-    @objc private func selectConfiguration( _ sender: Any? )
+    @objc
+    private func selectConfiguration( _ sender: Any? )
     {
         guard let item          = sender as? NSMenuItem,
               let configuration = item.representedObject as? Configuration

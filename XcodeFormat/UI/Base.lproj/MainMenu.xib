@@ -15,13 +15,13 @@
         <customObject id="Voe-Tx-rLC" customClass="ApplicationDelegate" customModule="Xcode_Format" customModuleProvider="target">
             <connections>
                 <outlet property="menu" destination="BIo-AU-9zh" id="FLg-GZ-Gfn"/>
+                <outlet property="updater" destination="asJ-hr-Pqm" id="EMq-rh-4NI"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
                 <menuItem title="XcodeFormat" id="1Xt-HY-uBw">
-                    <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="XcodeFormat" systemMenu="apple" id="uQy-DD-JDr">
                         <items>
                             <menuItem title="About XcodeFormat" id="5kV-Vb-QxS">
@@ -684,16 +684,23 @@
             <items>
                 <menuItem isSeparatorItem="YES" id="pqr-97-dBX"/>
                 <menuItem isSeparatorItem="YES" id="EhO-ih-789"/>
+                <menuItem title="Manage Configurations..." id="M2X-6L-vcy">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showConfigurationsWindow:" target="Voe-Tx-rLC" id="pwB-ZE-Nd0"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="2vB-PG-1EY"/>
                 <menuItem title="About Xcode Format..." id="KU9-Wy-x5J">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="showAboutWindow:" target="Voe-Tx-rLC" id="AzQ-a9-uF6"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Manage Configurations..." id="M2X-6L-vcy">
+                <menuItem title="Check for Updates..." id="LhN-1W-uwb">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="showConfigurationsWindow:" target="Voe-Tx-rLC" id="pwB-ZE-Nd0"/>
+                        <action selector="checkForUpdates:" target="asJ-hr-Pqm" id="lGc-ih-QeH"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="ZSC-iL-58n"/>
@@ -708,5 +715,11 @@
             </connections>
             <point key="canvasLocation" x="64" y="441"/>
         </menu>
+        <customObject id="asJ-hr-Pqm" customClass="GitHubUpdater">
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="string" keyPath="user" value="macmade"/>
+                <userDefinedRuntimeAttribute type="string" keyPath="repository" value="XcodeFormat"/>
+            </userDefinedRuntimeAttributes>
+        </customObject>
     </objects>
 </document>

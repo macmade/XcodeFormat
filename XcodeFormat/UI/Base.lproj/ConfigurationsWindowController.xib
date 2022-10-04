@@ -92,7 +92,7 @@
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView id="FJk-VA-vlP">
-                                                    <rect key="frame" x="234" y="0.0" width="238" height="24"/>
+                                                    <rect key="frame" x="233.5" y="0.0" width="238" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="EUx-sw-vnG">
@@ -103,8 +103,8 @@
                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="FJk-VA-vlP" name="toolTip" keyPath="objectValue.swiftFormat.absoluteString" id="xfN-eV-CPT"/>
                                                                 <binding destination="FJk-VA-vlP" name="value" keyPath="objectValue.swiftFormat.absoluteString" id="OqU-x4-5ZN"/>
+                                                                <binding destination="FJk-VA-vlP" name="toolTip" keyPath="objectValue.swiftFormat.absoluteString" id="xfN-eV-CPT"/>
                                                             </connections>
                                                         </textField>
                                                     </subviews>
@@ -202,7 +202,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OzB-aJ-Qhi">
-                                <rect key="frame" x="86" y="-7" width="75" height="32"/>
+                                <rect key="frame" x="86" y="-7" width="74" height="32"/>
                                 <buttonCell key="cell" type="push" title="Edit" bezelStyle="rounded" image="pencil" catalog="system" imagePosition="leading" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ate-mB-waw">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
