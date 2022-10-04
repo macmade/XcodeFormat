@@ -37,11 +37,15 @@ Search for `Save`, and choose a different shortcut for the save action (such as 
 
 ### How to use
 
+From the `Xcode Format` application (menu bar app), you can create and select different configurations.  
+Once a configuration is active, it will be used next time you save a file in Xcode:
+
+![Screenshot](Assets/Screenshots/5-Configurations.png "Configurations")
+
+It is advised to keep this application running (and set it to start at login), as it will periodically update the configuration files from the supplied URLs.
+
 An automator workflow will run every time you use the `cmd-s` shortcut.  
 The worklow will trigger the `Editor > Xcode Format Extension > Format Current File` and `File > Save` menu items.
-
-From the `Xcode Format` application (menu bar app), you can create and select different configurations.  
-Once a configuration is active, it will be used next time you save a file in Xcode.
 
 License
 -------
