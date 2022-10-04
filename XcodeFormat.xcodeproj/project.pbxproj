@@ -46,6 +46,7 @@
 		0527679528EC1B9D0019311B /* CryptoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0527679128EC1B970019311B /* CryptoKit.framework */; };
 		0527679728EC1DE60019311B /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0527679628EC1DE60019311B /* FileManager.swift */; };
 		0527679828EC1E580019311B /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0527679628EC1DE60019311B /* FileManager.swift */; };
+		0532485F28EC9D5900FD02F4 /* NSApplication+LaunchServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 0532485D28EC9D5900FD02F4 /* NSApplication+LaunchServices.m */; };
 		05744ECE28EC2E5000A88503 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05744ECD28EC2E5000A88503 /* URL.swift */; };
 		05744ECF28EC2E5000A88503 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05744ECD28EC2E5000A88503 /* URL.swift */; };
 		05744ED328EC2ED400A88503 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05744ED228EC2ED400A88503 /* Data.swift */; };
@@ -215,6 +216,9 @@
 		050E0F7828EBDF720080C562 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0527679128EC1B970019311B /* CryptoKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoKit.framework; path = System/Library/Frameworks/CryptoKit.framework; sourceTree = SDKROOT; };
 		0527679628EC1DE60019311B /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		0532485A28EC9D5800FD02F4 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		0532485D28EC9D5900FD02F4 /* NSApplication+LaunchServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSApplication+LaunchServices.m"; sourceTree = "<group>"; };
+		0532485E28EC9D5900FD02F4 /* NSApplication+LaunchServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSApplication+LaunchServices.h"; sourceTree = "<group>"; };
 		05744ECD28EC2E5000A88503 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		05744ED228EC2ED400A88503 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		05744ED528EC2EDB00A88503 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -271,6 +275,7 @@
 		050E0E3E28EB307B0080C562 /* XcodeFormat */ = {
 			isa = PBXGroup;
 			children = (
+				0532485A28EC9D5800FD02F4 /* Bridging-Header.h */,
 				050E0EF728EB3D960080C562 /* Classes */,
 				050E0EF928EB3DFE0080C562 /* Info.plist */,
 				050E0F1F28EB40D90080C562 /* Resources */,
@@ -441,6 +446,8 @@
 		050E0F1828EB3FD60080C562 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				0532485E28EC9D5900FD02F4 /* NSApplication+LaunchServices.h */,
+				0532485D28EC9D5900FD02F4 /* NSApplication+LaunchServices.m */,
 				050E0F1928EB3FD60080C562 /* Bundle.swift */,
 				050E0F1D28EB3FF30080C562 /* NSView.swift */,
 			);
@@ -574,6 +581,7 @@
 				TargetAttributes = {
 					050E0E3B28EB307B0080C562 = {
 						CreatedOnToolsVersion = 14.0.1;
+						LastSwiftMigration = 1400;
 					};
 					050E0F2728EB49210080C562 = {
 						CreatedOnToolsVersion = 14.0.1;
@@ -692,6 +700,7 @@
 				05744ED628EC2EDB00A88503 /* String.swift in Sources */,
 				050E0F1528EB3FB20080C562 /* Credit.swift in Sources */,
 				050E0F1E28EB3FF30080C562 /* NSView.swift in Sources */,
+				0532485F28EC9D5900FD02F4 /* NSApplication+LaunchServices.m in Sources */,
 				05744ED328EC2ED400A88503 /* Data.swift in Sources */,
 				050E0F1428EB3FB20080C562 /* CreditsWindowController.swift in Sources */,
 				050E0F6228EB66390080C562 /* Configuration.swift in Sources */,
@@ -790,6 +799,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = XcodeFormat/XcodeFormat.entitlements;
 				INFOPLIST_FILE = XcodeFormat/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
@@ -801,6 +811,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xs-labs.XcodeFormat";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "XcodeFormat/Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -810,6 +823,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = XcodeFormat/XcodeFormat.entitlements;
 				INFOPLIST_FILE = XcodeFormat/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
@@ -821,6 +835,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xs-labs.XcodeFormat";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "XcodeFormat/Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

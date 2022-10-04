@@ -682,7 +682,6 @@
         </menu>
         <menu id="BIo-AU-9zh">
             <items>
-                <menuItem isSeparatorItem="YES" id="pqr-97-dBX"/>
                 <menuItem isSeparatorItem="YES" id="EhO-ih-789"/>
                 <menuItem title="Manage Configurations..." id="M2X-6L-vcy">
                     <modifierMask key="keyEquivalentModifierMask"/>
@@ -691,6 +690,19 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="2vB-PG-1EY"/>
+                <menuItem title="Start at Login" id="1gL-w1-G4p">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <binding destination="Voe-Tx-rLC" name="value" keyPath="self.startAtLogin" id="IxG-ZS-gcR"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Check for Updates..." id="LhN-1W-uwb">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="checkForUpdates:" target="asJ-hr-Pqm" id="lGc-ih-QeH"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="IkI-vw-vU1"/>
                 <menuItem title="About Xcode Format..." id="KU9-Wy-x5J">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -703,13 +715,6 @@
                         <action selector="showHelp:" target="Voe-Tx-rLC" id="T1K-5t-ShB"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Check for Updates..." id="LhN-1W-uwb">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="checkForUpdates:" target="asJ-hr-Pqm" id="lGc-ih-QeH"/>
-                    </connections>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="ZSC-iL-58n"/>
                 <menuItem title="Quit" keyEquivalent="q" id="nve-ZP-rii">
                     <connections>
                         <action selector="terminate:" target="-1" id="bf6-Wb-wSy"/>

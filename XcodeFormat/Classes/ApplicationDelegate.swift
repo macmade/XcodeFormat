@@ -39,6 +39,14 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate
     private var statusItem:             NSStatusItem?
     private var configurationsObserver: NSKeyValueObservation?
 
+    @objc public dynamic var startAtLogin = NSApp.isLoginItemEnabled()
+    {
+        didSet
+        {
+            NSApp.setLoginItemEnabled( self.startAtLogin )
+        }
+    }
+
     public func applicationDidFinishLaunching( _ notification: Notification )
     {
         self.statusItem                        = NSStatusBar.system.statusItem( withLength: NSStatusItem.squareLength )
@@ -106,7 +114,7 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate
         {
             if let sha1 = try? Data( contentsOf: wflow1 ).sha256,
                let sha2 = try? Data( contentsOf: wflow2 ).sha256,
-                   sha1 == sha2
+               sha1 == sha2
             {
                 return
             }
@@ -145,13 +153,13 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate
             {
                 item.state           = .on
                 item.image           = imageOn
-                item.attributedTitle = NSAttributedString( string: item.title, attributes: [ .font : fontOn, .foregroundColor : colorOn ] )
+                item.attributedTitle = NSAttributedString( string: item.title, attributes: [ .font: fontOn, .foregroundColor: colorOn ] )
             }
             else
             {
                 item.state           = .off
                 item.image           = imageOff
-                item.attributedTitle = NSAttributedString( string: item.title, attributes: [ .font : fontOff, .foregroundColor : colorOff ] )
+                item.attributedTitle = NSAttributedString( string: item.title, attributes: [ .font: fontOff, .foregroundColor: colorOff ] )
             }
 
             items.insert( item, at: 0 )
