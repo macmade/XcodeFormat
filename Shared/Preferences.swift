@@ -97,6 +97,11 @@ public class Preferences: NSObject
                 self.defaults?.setValue( data, forKey: "selectedConfiguration" )
                 DistributedNotificationCenter.default().post( name: Preferences.defaultsChanged, object: nil )
             }
+            else
+            {
+                self.defaults?.setValue( nil, forKey: "selectedConfiguration" )
+                DistributedNotificationCenter.default().post( name: Preferences.defaultsChanged, object: nil )
+            }
         }
     }
 }

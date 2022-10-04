@@ -26,7 +26,7 @@ import Cocoa
 import GitHubUpdates
 
 @main
-public class ApplicationDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate
+public class ApplicationDelegate: NSObject, NSApplicationDelegate
 {
     private let aboutWindowController          = AboutWindowController()
     private let creditsWindowController        = CreditsWindowController()
@@ -81,6 +81,15 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate, NSMenuDelegat
             $0.representedObject is Configuration == false
         }
 
+        let selected = Preferences.shared.selectedConfiguration
+        let image    = NSImage( systemSymbolName: "curlybraces.square.fill", accessibilityDescription: nil )
+        let fontOn   = NSFont.boldSystemFont( ofSize: NSFont.systemFontSize )
+        let fontOff  = NSFont.systemFont( ofSize: NSFont.systemFontSize )
+        let colorOn  = NSColor.labelColor
+        let colorOff = NSColor.secondaryLabelColor
+        let imageOn  = image?.withSymbolConfiguration( NSImage.SymbolConfiguration( hierarchicalColor: colorOn ) )
+        let imageOff = image?.withSymbolConfiguration( NSImage.SymbolConfiguration( hierarchicalColor: colorOff ) )
+
         Preferences.shared.configurations.sorted
         {
             $0.name > $1.name
@@ -91,50 +100,23 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate, NSMenuDelegat
             item.target            = self
             item.representedObject = $0
 
+            if $0 == selected
+            {
+                item.state           = .on
+                item.image           = imageOn
+                item.attributedTitle = NSAttributedString( string: item.title, attributes: [ .font : fontOn, .foregroundColor : colorOn ] )
+            }
+            else
+            {
+                item.state           = .off
+                item.image           = imageOff
+                item.attributedTitle = NSAttributedString( string: item.title, attributes: [ .font : fontOff, .foregroundColor : colorOff ] )
+            }
+
             items.insert( item, at: 0 )
         }
 
         self.menu.items = items
-    }
-
-    public func menuWillOpen( _ menu: NSMenu )
-    {
-        if menu != self.menu
-        {
-            return
-        }
-
-        let selected = Preferences.shared.selectedConfiguration
-
-        self.menu.items.forEach
-        {
-            guard let configuration = $0.representedObject as? Configuration
-            else
-            {
-                return
-            }
-
-            let image    = NSImage( systemSymbolName: "curlybraces.square.fill", accessibilityDescription: nil )
-            let fontOn   = NSFont.boldSystemFont( ofSize: NSFont.systemFontSize )
-            let fontOff  = NSFont.systemFont( ofSize: NSFont.systemFontSize )
-            let colorOn  = NSColor.labelColor
-            let colorOff = NSColor.secondaryLabelColor
-            let imageOn  = image?.withSymbolConfiguration( NSImage.SymbolConfiguration( hierarchicalColor: colorOn ) )
-            let imageOff = image?.withSymbolConfiguration( NSImage.SymbolConfiguration( hierarchicalColor: colorOff ) )
-
-            if configuration == selected
-            {
-                $0.state           = .on
-                $0.image           = imageOn
-                $0.attributedTitle = NSAttributedString( string: $0.title, attributes: [ .font : fontOn, .foregroundColor : colorOn ] )
-            }
-            else
-            {
-                $0.state           = .off
-                $0.image           = imageOff
-                $0.attributedTitle = NSAttributedString( string: $0.title, attributes: [ .font : fontOff, .foregroundColor : colorOff ] )
-            }
-        }
     }
 
     @objc
@@ -147,7 +129,14 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate, NSMenuDelegat
             return
         }
 
-        Preferences.shared.selectedConfiguration = configuration
+        if Preferences.shared.selectedConfiguration == configuration
+        {
+            Preferences.shared.selectedConfiguration = nil
+        }
+        else
+        {
+            Preferences.shared.selectedConfiguration = configuration
+        }
     }
 
     @IBAction
