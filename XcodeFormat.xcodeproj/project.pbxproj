@@ -492,11 +492,8 @@
 			isa = PBXGroup;
 			children = (
 				050E0F6128EB66390080C562 /* Configuration.swift */,
-				05744ED228EC2ED400A88503 /* Data.swift */,
-				0527679628EC1DE60019311B /* FileManager.swift */,
+				05C2595F28EC8A5C008BDDDE /* Extensions */,
 				050E0F5E28EB65BA0080C562 /* Preferences.swift */,
-				05744ED528EC2EDB00A88503 /* String.swift */,
-				05744ECD28EC2E5000A88503 /* URL.swift */,
 				05BED21928EC4A2A008039F6 /* Task.swift */,
 			);
 			path = Shared;
@@ -509,6 +506,17 @@
 				050E0F7728EBDF6A0080C562 /* Relauncher */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		05C2595F28EC8A5C008BDDDE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				05744ED228EC2ED400A88503 /* Data.swift */,
+				0527679628EC1DE60019311B /* FileManager.swift */,
+				05744ED528EC2EDB00A88503 /* String.swift */,
+				05744ECD28EC2E5000A88503 /* URL.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
