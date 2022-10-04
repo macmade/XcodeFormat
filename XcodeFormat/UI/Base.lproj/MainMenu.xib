@@ -697,6 +697,12 @@
                         <action selector="showAboutWindow:" target="Voe-Tx-rLC" id="AzQ-a9-uF6"/>
                     </connections>
                 </menuItem>
+                <menuItem title="Help..." id="zN9-JY-PyI">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showHelp:" target="Voe-Tx-rLC" id="T1K-5t-ShB"/>
+                    </connections>
+                </menuItem>
                 <menuItem title="Check for Updates..." id="LhN-1W-uwb">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>

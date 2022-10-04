@@ -207,4 +207,18 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate
 
         self.configurationsWindowController.window?.makeKeyAndOrderFront( sender )
     }
+
+    @IBAction
+    public func showHelp( _ sender: Any? )
+    {
+        guard let url = URL( string: "https://github.com/macmade/XcodeFormat" )
+        else
+        {
+            NSSound.beep()
+
+            return
+        }
+
+        NSWorkspace.shared.open( url )
+    }
 }
