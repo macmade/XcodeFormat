@@ -23,12 +23,14 @@
  ******************************************************************************/
 
 import Foundation
+import CryptoKit
 
 @objc public class Configuration: NSObject, Codable
 {
-    @objc public dynamic var name:        String
-    @objc public dynamic var swiftFormat: URL
-    @objc public dynamic var uncrustify:  URL
+    @objc public dynamic var name:         String
+    @objc public dynamic var swiftFormat:  URL
+    @objc public dynamic var uncrustify:   URL
+    @objc public dynamic var downloading = false
 
     public static var defaultConfigurations: [ Configuration ]
     {
@@ -58,6 +60,8 @@ import Foundation
         self.name        = name
         self.swiftFormat = swiftFormat
         self.uncrustify  = uncrustify
+
+        super.init()
     }
 
     public override var description: String
@@ -86,5 +90,61 @@ import Foundation
         }
 
         return false
+    }
+
+    public func download()
+    {
+        DispatchQueue.main.async
+        {
+            if self.downloading
+            {
+                return
+            }
+
+            self.downloading = true
+
+            DispatchQueue.global( qos: .userInitiated ).async
+            {
+                self.download( url: self.swiftFormat )
+                self.download( url: self.uncrustify )
+
+                DispatchQueue.main.async
+                {
+                    self.downloading = false
+                }
+            }
+        }
+    }
+
+    private func download( url: URL )
+    {
+        guard let data = url.absoluteString.data( using: .utf8 )
+        else
+        {
+            return
+        }
+
+        let sha256 = SHA256.hash( data: data ).compactMap
+        {
+            String( format: "%02x", $0 )
+        }
+        .joined()
+
+        guard let data      = try? Data( contentsOf: url ),
+              let container = FileManager.sharedContainerURL?.appendingPathComponent( "Configurations" )
+        else
+        {
+            return
+        }
+
+        try? FileManager.default.createDirectory( at: container, withIntermediateDirectories: true )
+
+        let coordinator = NSFileCoordinator( filePresenter: nil )
+        var error:        NSError?
+
+        coordinator.coordinate( writingItemAt: container.appendingPathComponent( sha256 ), error: &error )
+        {
+            try? data.write( to: $0 )
+        }
     }
 }

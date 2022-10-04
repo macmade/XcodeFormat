@@ -56,6 +56,11 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate, NSMenuDelegat
             Preferences.shared.selectedConfiguration = Preferences.shared.configurations.first
         }
 
+        Preferences.shared.configurations.forEach
+        {
+            $0.download()
+        }
+
         self.rebuildMenu()
 
         DispatchQueue.main.asyncAfter( deadline: .now() + .seconds( 2 ) )

@@ -42,6 +42,10 @@
 		050E0F6B28EB84D30080C562 /* ConfigurationWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 050E0F6A28EB84D30080C562 /* ConfigurationWindowController.xib */; };
 		050E0F7928EBDF850080C562 /* GitHubUpdates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050E0F7528EBDF6A0080C562 /* GitHubUpdates.framework */; };
 		050E0F7B28EBDF970080C562 /* GitHubUpdates.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 050E0F7528EBDF6A0080C562 /* GitHubUpdates.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0527679428EC1B970019311B /* CryptoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0527679128EC1B970019311B /* CryptoKit.framework */; };
+		0527679528EC1B9D0019311B /* CryptoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0527679128EC1B970019311B /* CryptoKit.framework */; };
+		0527679728EC1DE60019311B /* NSFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0527679628EC1DE60019311B /* NSFileManager.swift */; };
+		0527679828EC1E580019311B /* NSFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0527679628EC1DE60019311B /* NSFileManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -200,6 +204,8 @@
 		050E0F6A28EB84D30080C562 /* ConfigurationWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfigurationWindowController.xib; sourceTree = "<group>"; };
 		050E0F6F28EBDF6A0080C562 /* GitHubUpdates.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GitHubUpdates.xcodeproj; path = Submodules/GitHubUpdates/GitHubUpdates.xcodeproj; sourceTree = "<group>"; };
 		050E0F7828EBDF720080C562 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		0527679128EC1B970019311B /* CryptoKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoKit.framework; path = System/Library/Frameworks/CryptoKit.framework; sourceTree = SDKROOT; };
+		0527679628EC1DE60019311B /* NSFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFileManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +213,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0527679428EC1B970019311B /* CryptoKit.framework in Frameworks */,
 				050E0F7928EBDF850080C562 /* GitHubUpdates.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,6 +222,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0527679528EC1B9D0019311B /* CryptoKit.framework in Frameworks */,
 				050E0F2B28EB49210080C562 /* Cocoa.framework in Frameworks */,
 				050E0F2D28EB49210080C562 /* XcodeKit.framework in Frameworks */,
 			);
@@ -437,6 +445,7 @@
 		050E0F2928EB49210080C562 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0527679128EC1B970019311B /* CryptoKit.framework */,
 				050E0F2A28EB49210080C562 /* Cocoa.framework */,
 				050E0F2C28EB49210080C562 /* XcodeKit.framework */,
 			);
@@ -469,6 +478,7 @@
 			children = (
 				050E0F5E28EB65BA0080C562 /* Preferences.swift */,
 				050E0F6128EB66390080C562 /* Configuration.swift */,
+				0527679628EC1DE60019311B /* NSFileManager.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -647,6 +657,7 @@
 				050E0F1628EB3FB20080C562 /* CreditViewController.swift in Sources */,
 				050E0F6728EB83CC0080C562 /* ArrayIsNotEmpty.swift in Sources */,
 				050E0F1728EB3FB20080C562 /* AboutWindowController.swift in Sources */,
+				0527679728EC1DE60019311B /* NSFileManager.swift in Sources */,
 				050E0F5F28EB65BA0080C562 /* Preferences.swift in Sources */,
 				050E0F1528EB3FB20080C562 /* Credit.swift in Sources */,
 				050E0F1E28EB3FF30080C562 /* NSView.swift in Sources */,
@@ -663,6 +674,7 @@
 				050E0F3228EB49210080C562 /* SourceEditorCommand.swift in Sources */,
 				050E0F6328EB66390080C562 /* Configuration.swift in Sources */,
 				050E0F6028EB65BA0080C562 /* Preferences.swift in Sources */,
+				0527679828EC1E580019311B /* NSFileManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
