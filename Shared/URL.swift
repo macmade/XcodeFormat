@@ -23,15 +23,11 @@
  ******************************************************************************/
 
 import Foundation
-import XcodeKit
 
-class SourceEditorExtension: NSObject, XCSourceEditorExtension
+public extension URL
 {
-    func extensionDidFinishLaunching()
+    var sha256: String?
     {
-        Preferences.shared.configurations.forEach
-        {
-            $0.download()
-        }
+        self.absoluteString.sha256
     }
 }

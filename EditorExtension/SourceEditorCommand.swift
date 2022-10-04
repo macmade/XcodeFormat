@@ -24,12 +24,49 @@
 
 import Foundation
 import XcodeKit
+import UniformTypeIdentifiers
 
-class SourceEditorCommand: NSObject, XCSourceEditorCommand
+public class SourceEditorCommand: NSObject, XCSourceEditorCommand
 {
-    func perform( with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping ( Error? ) -> Void ) -> Void
+    public func perform( with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping ( Error? ) -> Void )
     {
-        invocation.buffer.completeBuffer = "hello"
-        completionHandler( nil )
+        guard let configuration = Preferences.shared.selectedConfiguration,
+              let uti           = UTType( invocation.buffer.contentUTI )
+        else
+        {
+            completionHandler( nil )
+
+            return
+        }
+
+        configuration.withConfigurations
+        {
+            if uti == .swiftSource
+            {
+                self.format( buffer: invocation.buffer, executable: "swiftformat", arguments: [ "--config", $0.swiftFormat.path ] )
+            }
+
+            $0.finished()
+            completionHandler( nil )
+        }
+        error:
+        {
+            completionHandler( nil )
+        }
+    }
+
+    private func format( buffer: XCSourceTextBuffer, executable: String, arguments: [ String ] )
+    {
+        guard let data   = buffer.completeBuffer.data( using: .utf8 ),
+              let task   = Task.run( name: executable, arguments: arguments, input: data ),
+              let status = task.terminationStatus,
+              let out    = String( data: task.standardOutput, encoding: .utf8 ),
+              status     == 0
+        else
+        {
+            return
+        }
+
+        buffer.completeBuffer = out
     }
 }

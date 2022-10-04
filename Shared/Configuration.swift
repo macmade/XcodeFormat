@@ -118,19 +118,8 @@ import CryptoKit
 
     private func download( url: URL )
     {
-        guard let data = url.absoluteString.data( using: .utf8 )
-        else
-        {
-            return
-        }
-
-        let sha256 = SHA256.hash( data: data ).compactMap
-        {
-            String( format: "%02x", $0 )
-        }
-        .joined()
-
-        guard let data      = try? Data( contentsOf: url ),
+        guard let sha256    = url.sha256,
+              let data      = try? Data( contentsOf: url ),
               let container = FileManager.sharedContainerURL?.appendingPathComponent( "Configurations" )
         else
         {
@@ -146,5 +135,71 @@ import CryptoKit
         {
             try? data.write( to: $0 )
         }
+    }
+
+    public func withConfigurations( completion: ( ( swiftFormat: URL, uncrustify: URL, finished: () -> Void ) ) -> Void, error: () -> Void )
+    {
+        guard let swiftFormat = self.copy( url: self.swiftFormat ),
+              let uncrustify  = self.copy( url: self.uncrustify )
+        else
+        {
+            error()
+            self.download()
+            
+            return
+        }
+
+        let finished: () -> Void =
+        {
+            try? FileManager.default.removeItem( at: swiftFormat )
+            try? FileManager.default.removeItem( at: uncrustify )
+        }
+
+        completion( ( swiftFormat: swiftFormat, uncrustify: uncrustify, finished: finished ) )
+    }
+
+    private func copy( url: URL ) -> URL?
+    {
+
+        guard let sha256    = url.sha256,
+              let container = FileManager.sharedContainerURL?.appendingPathComponent( "Configurations" )
+        else
+        {
+            return nil
+        }
+
+        let config = container.appendingPathComponent( sha256 )
+
+        guard FileManager.default.fileExists( atPath: config.path )
+        else
+        {
+            return nil
+        }
+
+        let copy             = container.appendingPathComponent( "Temp" ).appendingPathComponent( UUID().uuidString )
+        let coordinator      = NSFileCoordinator( filePresenter: nil )
+        var coordinationError: NSError?
+        var writeError:        NSError?
+
+        coordinator.coordinate( readingItemAt: config, error: &coordinationError )
+        {
+            guard let data = try? Data( contentsOf: $0 )
+            else
+            {
+                return
+            }
+
+            do
+            {
+                try FileManager.default.createDirectory( at: copy.deletingLastPathComponent(), withIntermediateDirectories: true )
+                try data.write( to: copy )
+            }
+            catch let e
+            {
+                writeError = e as NSError
+            }
+        }
+
+        return coordinationError == nil && writeError == nil ? copy : nil
     }
 }

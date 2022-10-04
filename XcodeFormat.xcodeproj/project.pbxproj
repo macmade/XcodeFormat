@@ -44,8 +44,16 @@
 		050E0F7B28EBDF970080C562 /* GitHubUpdates.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 050E0F7528EBDF6A0080C562 /* GitHubUpdates.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0527679428EC1B970019311B /* CryptoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0527679128EC1B970019311B /* CryptoKit.framework */; };
 		0527679528EC1B9D0019311B /* CryptoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0527679128EC1B970019311B /* CryptoKit.framework */; };
-		0527679728EC1DE60019311B /* NSFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0527679628EC1DE60019311B /* NSFileManager.swift */; };
-		0527679828EC1E580019311B /* NSFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0527679628EC1DE60019311B /* NSFileManager.swift */; };
+		0527679728EC1DE60019311B /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0527679628EC1DE60019311B /* FileManager.swift */; };
+		0527679828EC1E580019311B /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0527679628EC1DE60019311B /* FileManager.swift */; };
+		05744ECE28EC2E5000A88503 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05744ECD28EC2E5000A88503 /* URL.swift */; };
+		05744ECF28EC2E5000A88503 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05744ECD28EC2E5000A88503 /* URL.swift */; };
+		05744ED328EC2ED400A88503 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05744ED228EC2ED400A88503 /* Data.swift */; };
+		05744ED428EC2ED400A88503 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05744ED228EC2ED400A88503 /* Data.swift */; };
+		05744ED628EC2EDB00A88503 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05744ED528EC2EDB00A88503 /* String.swift */; };
+		05744ED728EC2EDB00A88503 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05744ED528EC2EDB00A88503 /* String.swift */; };
+		05BED21A28EC4A2A008039F6 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BED21928EC4A2A008039F6 /* Task.swift */; };
+		05BED21B28EC4A2A008039F6 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BED21928EC4A2A008039F6 /* Task.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -205,7 +213,11 @@
 		050E0F6F28EBDF6A0080C562 /* GitHubUpdates.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GitHubUpdates.xcodeproj; path = Submodules/GitHubUpdates/GitHubUpdates.xcodeproj; sourceTree = "<group>"; };
 		050E0F7828EBDF720080C562 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0527679128EC1B970019311B /* CryptoKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoKit.framework; path = System/Library/Frameworks/CryptoKit.framework; sourceTree = SDKROOT; };
-		0527679628EC1DE60019311B /* NSFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFileManager.swift; sourceTree = "<group>"; };
+		0527679628EC1DE60019311B /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		05744ECD28EC2E5000A88503 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		05744ED228EC2ED400A88503 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		05744ED528EC2EDB00A88503 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		05BED21928EC4A2A008039F6 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -476,9 +488,13 @@
 		050E0F5C28EB659F0080C562 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				050E0F5E28EB65BA0080C562 /* Preferences.swift */,
 				050E0F6128EB66390080C562 /* Configuration.swift */,
-				0527679628EC1DE60019311B /* NSFileManager.swift */,
+				05744ED228EC2ED400A88503 /* Data.swift */,
+				0527679628EC1DE60019311B /* FileManager.swift */,
+				050E0F5E28EB65BA0080C562 /* Preferences.swift */,
+				05744ED528EC2EDB00A88503 /* String.swift */,
+				05744ECD28EC2E5000A88503 /* URL.swift */,
+				05BED21928EC4A2A008039F6 /* Task.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -655,12 +671,16 @@
 				050E0F6928EB84C90080C562 /* ConfigurationWindowController.swift in Sources */,
 				050E0E4028EB307B0080C562 /* ApplicationDelegate.swift in Sources */,
 				050E0F1628EB3FB20080C562 /* CreditViewController.swift in Sources */,
+				05BED21A28EC4A2A008039F6 /* Task.swift in Sources */,
 				050E0F6728EB83CC0080C562 /* ArrayIsNotEmpty.swift in Sources */,
 				050E0F1728EB3FB20080C562 /* AboutWindowController.swift in Sources */,
-				0527679728EC1DE60019311B /* NSFileManager.swift in Sources */,
+				0527679728EC1DE60019311B /* FileManager.swift in Sources */,
+				05744ECE28EC2E5000A88503 /* URL.swift in Sources */,
 				050E0F5F28EB65BA0080C562 /* Preferences.swift in Sources */,
+				05744ED628EC2EDB00A88503 /* String.swift in Sources */,
 				050E0F1528EB3FB20080C562 /* Credit.swift in Sources */,
 				050E0F1E28EB3FF30080C562 /* NSView.swift in Sources */,
+				05744ED328EC2ED400A88503 /* Data.swift in Sources */,
 				050E0F1428EB3FB20080C562 /* CreditsWindowController.swift in Sources */,
 				050E0F6228EB66390080C562 /* Configuration.swift in Sources */,
 			);
@@ -670,11 +690,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05744ECF28EC2E5000A88503 /* URL.swift in Sources */,
 				050E0F3028EB49210080C562 /* SourceEditorExtension.swift in Sources */,
 				050E0F3228EB49210080C562 /* SourceEditorCommand.swift in Sources */,
 				050E0F6328EB66390080C562 /* Configuration.swift in Sources */,
 				050E0F6028EB65BA0080C562 /* Preferences.swift in Sources */,
-				0527679828EC1E580019311B /* NSFileManager.swift in Sources */,
+				05744ED428EC2ED400A88503 /* Data.swift in Sources */,
+				05744ED728EC2EDB00A88503 /* String.swift in Sources */,
+				05BED21B28EC4A2A008039F6 /* Task.swift in Sources */,
+				0527679828EC1E580019311B /* FileManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

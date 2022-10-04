@@ -23,15 +23,16 @@
  ******************************************************************************/
 
 import Foundation
-import XcodeKit
+import CryptoKit
 
-class SourceEditorExtension: NSObject, XCSourceEditorExtension
+public extension Data
 {
-    func extensionDidFinishLaunching()
+    var sha256: String
     {
-        Preferences.shared.configurations.forEach
+        SHA256.hash( data: self ).compactMap
         {
-            $0.download()
+            String( format: "%02X", $0 )
         }
+        .joined()
     }
 }
