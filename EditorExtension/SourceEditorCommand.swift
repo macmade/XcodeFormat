@@ -67,6 +67,47 @@ public class SourceEditorCommand: NSObject, XCSourceEditorCommand
             return
         }
 
+        if buffer.completeBuffer == out
+        {
+            return
+        }
+
+        let selections = buffer.selections as? [ XCSourceTextRange ] ?? []
+        let insertion  = selections.first
+        {
+            $0.start.line == $0.end.line && $0.start.column == $0.end.column
+        }
+
         buffer.completeBuffer = out
+
+        buffer.selections.removeAllObjects()
+
+        guard let insertion = insertion
+        else
+        {
+            return
+        }
+
+        let lines = out.components( separatedBy: .newlines )
+
+        if insertion.start.line >= lines.count
+        {
+            return
+        }
+
+        let line = lines[ insertion.start.line ]
+
+        if insertion.start.column < line.count
+        {
+            let pos = XCSourceTextPosition( line: insertion.start.line, column: insertion.start.column )
+
+            buffer.selections.add( XCSourceTextRange( start: pos, end: pos ) )
+        }
+        else
+        {
+            let pos = XCSourceTextPosition( line: insertion.start.line, column: line.count )
+
+            buffer.selections.add( XCSourceTextRange( start: pos, end: pos ) )
+        }
     }
 }
