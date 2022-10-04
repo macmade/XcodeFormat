@@ -35,6 +35,7 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate
     @IBOutlet private var menu:    NSMenu!
     @IBOutlet private var updater: GitHubUpdater!
 
+    private var downloadTimer:          Timer?
     private var statusItem:             NSStatusItem?
     private var configurationsObserver: NSKeyValueObservation?
 
@@ -68,6 +69,19 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate
         {
             self.updater.checkForUpdatesInBackground()
         }
+
+        self.downloadTimer = Timer.scheduledTimer( withTimeInterval: 3600, repeats: true )
+        {
+            _ in Preferences.shared.configurations.forEach
+            {
+                $0.download()
+            }
+        }
+    }
+
+    public func applicationWillTerminate( _ notification: Notification )
+    {
+        self.downloadTimer?.invalidate()
     }
 
     public func applicationShouldTerminateAfterLastWindowClosed( _ sender: NSApplication ) -> Bool
