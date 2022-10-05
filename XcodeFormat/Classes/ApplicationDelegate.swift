@@ -31,13 +31,24 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate
     private let aboutWindowController          = AboutWindowController()
     private let creditsWindowController        = CreditsWindowController()
     private let configurationsWindowController = ConfigurationsWindowController()
+    private let preferencesWindowController    = PreferencesWindowController()
 
     @IBOutlet private var menu:    NSMenu!
     @IBOutlet private var updater: GitHubUpdater!
 
-    private var downloadTimer:          Timer?
-    private var statusItem:             NSStatusItem?
-    private var configurationsObserver: NSKeyValueObservation?
+    private var downloadTimer:                  Timer?
+    private var statusItem:                     NSStatusItem?
+    private var configurationsObserver:         NSKeyValueObservation?
+    private var selectedConfigurationsObserver: NSKeyValueObservation?
+
+    @objc public dynamic var displayActiveConfiguration = UserDefaults.standard.bool( forKey: "displayActiveConfiguration" )
+    {
+        didSet
+        {
+            UserDefaults.standard.set( self.displayActiveConfiguration, forKey: "displayActiveConfiguration" )
+            self.updateStatusItem()
+        }
+    }
 
     @objc public dynamic var startAtLogin = NSApp.isLoginItemEnabled()
     {
@@ -49,14 +60,16 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate
 
     public func applicationDidFinishLaunching( _ notification: Notification )
     {
-        self.statusItem                        = NSStatusBar.system.statusItem( withLength: NSStatusItem.squareLength )
-        self.statusItem?.button?.image         = NSImage( systemSymbolName: "curlybraces", accessibilityDescription: nil )
-        self.statusItem?.button?.imagePosition = .imageLeading
-        self.statusItem?.menu                  = self.menu
+        self.updateStatusItem()
 
         self.configurationsObserver = Preferences.shared.observe( \.configurations )
         {
             [ weak self ] _, _ in self?.rebuildMenu()
+        }
+
+        self.selectedConfigurationsObserver = Preferences.shared.observe( \.selectedConfiguration )
+        {
+            [ weak self ] _, _ in self?.updateStatusItem()
         }
 
         if Preferences.shared.configurations.isEmpty
@@ -95,6 +108,29 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate
     public func applicationShouldTerminateAfterLastWindowClosed( _ sender: NSApplication ) -> Bool
     {
         false
+    }
+
+    private func updateStatusItem()
+    {
+        if let existing = self.statusItem
+        {
+            NSStatusBar.system.removeStatusItem( existing )
+        }
+
+        if self.displayActiveConfiguration
+        {
+            self.statusItem                = NSStatusBar.system.statusItem( withLength: NSStatusItem.variableLength )
+            self.statusItem?.button?.title = Preferences.shared.selectedConfiguration?.name ?? "--"
+            self.statusItem?.button?.font  = NSFont.systemFont( ofSize: 10 )
+        }
+        else
+        {
+            self.statusItem = NSStatusBar.system.statusItem( withLength: NSStatusItem.squareLength )
+        }
+
+        self.statusItem?.button?.image         = NSImage( systemSymbolName: "curlybraces", accessibilityDescription: nil )
+        self.statusItem?.button?.imagePosition = .imageLeading
+        self.statusItem?.menu                  = self.menu
     }
 
     private func installWorkflowIfNeeded()
@@ -228,6 +264,20 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate
         }
 
         self.configurationsWindowController.window?.makeKeyAndOrderFront( sender )
+    }
+
+    @IBAction
+    public func showPreferencesWindow( _ sender: Any? )
+    {
+        NSApp.activate( ignoringOtherApps: true )
+
+        if self.preferencesWindowController.window?.isVisible == false
+        {
+            self.preferencesWindowController.window?.layoutIfNeeded()
+            self.preferencesWindowController.window?.center()
+        }
+
+        self.preferencesWindowController.window?.makeKeyAndOrderFront( sender )
     }
 
     @IBAction

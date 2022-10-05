@@ -689,6 +689,12 @@
                         <action selector="showConfigurationsWindow:" target="Voe-Tx-rLC" id="pwB-ZE-Nd0"/>
                     </connections>
                 </menuItem>
+                <menuItem title="Preferences..." id="GtG-kn-cYI">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showPreferencesWindow:" target="Voe-Tx-rLC" id="14D-ZW-h8C"/>
+                    </connections>
+                </menuItem>
                 <menuItem isSeparatorItem="YES" id="2vB-PG-1EY"/>
                 <menuItem title="Start at Login" id="1gL-w1-G4p">
                     <modifierMask key="keyEquivalentModifierMask"/>
@@ -715,6 +721,7 @@
                         <action selector="showHelp:" target="Voe-Tx-rLC" id="T1K-5t-ShB"/>
                     </connections>
                 </menuItem>
+                <menuItem isSeparatorItem="YES" id="n33-lJ-mzx"/>
                 <menuItem title="Quit" keyEquivalent="q" id="nve-ZP-rii">
                     <connections>
                         <action selector="terminate:" target="-1" id="bf6-Wb-wSy"/>

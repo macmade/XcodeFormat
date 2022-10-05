@@ -46,6 +46,8 @@
 		0527679528EC1B9D0019311B /* CryptoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0527679128EC1B970019311B /* CryptoKit.framework */; };
 		0527679728EC1DE60019311B /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0527679628EC1DE60019311B /* FileManager.swift */; };
 		0527679828EC1E580019311B /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0527679628EC1DE60019311B /* FileManager.swift */; };
+		052C390F28EDFBE20034E743 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052C390E28EDFBE20034E743 /* PreferencesWindowController.swift */; };
+		052C391428EDFC380034E743 /* PreferencesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 052C391628EDFC380034E743 /* PreferencesWindowController.xib */; };
 		0532485F28EC9D5900FD02F4 /* NSApplication+LaunchServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 0532485D28EC9D5900FD02F4 /* NSApplication+LaunchServices.m */; };
 		05744ECE28EC2E5000A88503 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05744ECD28EC2E5000A88503 /* URL.swift */; };
 		05744ECF28EC2E5000A88503 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05744ECD28EC2E5000A88503 /* URL.swift */; };
@@ -216,6 +218,8 @@
 		050E0F7828EBDF720080C562 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0527679128EC1B970019311B /* CryptoKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoKit.framework; path = System/Library/Frameworks/CryptoKit.framework; sourceTree = SDKROOT; };
 		0527679628EC1DE60019311B /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		052C390E28EDFBE20034E743 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
+		052C391528EDFC380034E743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PreferencesWindowController.xib; sourceTree = "<group>"; };
 		0532485A28EC9D5800FD02F4 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		0532485D28EC9D5900FD02F4 /* NSApplication+LaunchServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSApplication+LaunchServices.m"; sourceTree = "<group>"; };
 		0532485E28EC9D5900FD02F4 /* NSApplication+LaunchServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSApplication+LaunchServices.h"; sourceTree = "<group>"; };
@@ -424,6 +428,7 @@
 				050E0F1028EB3FB10080C562 /* CreditsWindowController.swift */,
 				050E0F1228EB3FB10080C562 /* CreditViewController.swift */,
 				050E0F1828EB3FD60080C562 /* Extensions */,
+				052C390E28EDFBE20034E743 /* PreferencesWindowController.swift */,
 				050E0F1B28EB3FEE0080C562 /* TableRowView.swift */,
 			);
 			path = Classes;
@@ -439,6 +444,7 @@
 				050E0F0928EB3FAB0080C562 /* CreditsWindowController.xib */,
 				050E0F0B28EB3FAB0080C562 /* CreditViewController.xib */,
 				050E0E4328EB307C0080C562 /* MainMenu.xib */,
+				052C391628EDFC380034E743 /* PreferencesWindowController.xib */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -641,6 +647,7 @@
 				050E0F0D28EB3FAB0080C562 /* AboutWindowController.xib in Resources */,
 				050E0F2328EB40D90080C562 /* License-SwiftFormat.txt in Resources */,
 				050E0F6B28EB84D30080C562 /* ConfigurationWindowController.xib in Resources */,
+				052C391428EDFC380034E743 /* PreferencesWindowController.xib in Resources */,
 				050E0F0E28EB3FAB0080C562 /* CreditsWindowController.xib in Resources */,
 				05C2595E28EC8233008BDDDE /* XcodeFormat.workflow in Resources */,
 				050E0E4528EB307C0080C562 /* MainMenu.xib in Resources */,
@@ -702,6 +709,7 @@
 				050E0F1E28EB3FF30080C562 /* NSView.swift in Sources */,
 				0532485F28EC9D5900FD02F4 /* NSApplication+LaunchServices.m in Sources */,
 				05744ED328EC2ED400A88503 /* Data.swift in Sources */,
+				052C390F28EDFBE20034E743 /* PreferencesWindowController.swift in Sources */,
 				050E0F1428EB3FB20080C562 /* CreditsWindowController.swift in Sources */,
 				050E0F6228EB66390080C562 /* Configuration.swift in Sources */,
 			);
@@ -772,6 +780,14 @@
 				050E0F5A28EB61BF0080C562 /* Base */,
 			);
 			name = ConfigurationsWindowController.xib;
+			sourceTree = "<group>";
+		};
+		052C391628EDFC380034E743 /* PreferencesWindowController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				052C391528EDFC380034E743 /* Base */,
+			);
+			name = PreferencesWindowController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

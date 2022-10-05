@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="AboutWindowController" customModule="Uncrustifier" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="AboutWindowController" customModule="Xcode_Format" customModuleProvider="target">
             <connections>
                 <outlet property="window" destination="1ha-vn-vKO" id="bhG-0h-Eje"/>
             </connections>
