@@ -72,6 +72,11 @@ public class SourceEditorCommand: NSObject, XCSourceEditorCommand
             return
         }
 
+        if out.trimmingCharacters( in: .whitespacesAndNewlines ).isEmpty
+        {
+            return
+        }
+
         let selections = buffer.selections as? [ XCSourceTextRange ] ?? []
         let insertion  = selections.first
         {
