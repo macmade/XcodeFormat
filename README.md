@@ -30,17 +30,21 @@ Add Xcode to the list of applications and ensure the checkbox next to it is sele
 
 ![Screenshot](Assets/Screenshots/3-Security-Accessibility.png "Security Accessibility")
 
+From the `System Preferences`, ensure that `Xcode Source Editor` is enabled for the `Xcode Format` extension.
+
+![Screenshot](Assets/Screenshots/4-Xcode-Source-Editor.png "Xcode Source Editor")
+
 Open Xcode, go the the `Preferences` and navigate to the `Key Bindings` tab.  
 Search for `Save`, and choose a different shortcut for the save action (such as `cmd-ctrl-s`):
 
-![Screenshot](Assets/Screenshots/4-Xcode-KeyBindings.png "Xcode KeyBindings")
+![Screenshot](Assets/Screenshots/5-Xcode-KeyBindings.png "Xcode KeyBindings")
 
 ### How to use
 
 From the `Xcode Format` application (menu bar app), you can create and select different configurations.  
 Once a configuration is active, it will be used next time you save a file in Xcode:
 
-![Screenshot](Assets/Screenshots/5-Configurations.png "Configurations")
+![Screenshot](Assets/Screenshots/6-Configurations.png "Configurations")
 
 It is advised to keep this application running (and set it to start at login), as it will periodically update the configuration files from the supplied URLs.
 
