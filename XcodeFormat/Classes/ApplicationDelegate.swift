@@ -379,6 +379,24 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate
         self.preferencesWindowController.window?.makeKeyAndOrderFront( sender )
     }
 
+    /// Re-downloads every stored configuration's formatter files into the
+    /// shared cache.
+    ///
+    /// Triggers the same download path used at launch and by the hourly timer,
+    /// overwriting the cached files. Safe to invoke repeatedly: each
+    /// configuration's `download()` self-coalesces while a download is already
+    /// in progress.
+    ///
+    /// - Parameter sender: The control that triggered the action.
+    @IBAction
+    public func reloadConfigurations( _ sender: Any? )
+    {
+        Preferences.shared.configurations.forEach
+        {
+            $0.download()
+        }
+    }
+
     /// Opens the project's GitHub page in the default browser, beeping if the
     /// URL cannot be constructed.
     ///

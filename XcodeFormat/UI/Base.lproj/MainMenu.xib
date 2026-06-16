@@ -682,6 +682,13 @@
         <menu id="BIo-AU-9zh">
             <items>
                 <menuItem isSeparatorItem="YES" id="EhO-ih-789"/>
+                <menuItem title="Reload Configurations" id="rLd-Cf-g01">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="reloadConfigurations:" target="Voe-Tx-rLC" id="rLd-Cf-a01"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="rLd-Cf-s01"/>
                 <menuItem title="Manage Configurations..." id="M2X-6L-vcy">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
