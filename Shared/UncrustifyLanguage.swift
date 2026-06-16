@@ -25,6 +25,8 @@
 import Foundation
 import UniformTypeIdentifiers
 
+/// Namespace that maps a source file's uniform type to the language token
+/// uncrustify expects on its `-l` command-line option.
 public enum UncrustifyLanguage
 {
     /// Maps a source buffer's `UTType` to the uncrustify `-l` language hint.

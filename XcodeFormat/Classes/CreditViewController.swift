@@ -24,13 +24,23 @@
 
 import Cocoa
 
+/// Detail view controller showing a single ``Credit``'s description and the
+/// full license text rendered in a text view.
 public class CreditViewController: NSViewController
 {
+    /// The credit being displayed. KVO-observable.
     @objc public private( set ) dynamic var credit:      Credit
+
+    /// The credit's license text styled for display, or `nil` if none.
+    /// KVO-observable.
     @objc private               dynamic var licenseText: NSAttributedString?
 
+    /// Text view that renders the license text.
     @IBOutlet private var textView: NSTextView!
 
+    /// Creates the controller for a given credit.
+    ///
+    /// - Parameter credit: The credit to display.
     public init( credit: Credit )
     {
         self.credit = credit
@@ -38,16 +48,23 @@ public class CreditViewController: NSViewController
         super.init( nibName: nil, bundle: nil )
     }
 
+    /// Not supported; this controller is not restored from a coder.
+    ///
+    /// - Parameter coder: The unarchiver (unused).
+    /// - Returns: Always `nil`.
     required init?( coder: NSCoder )
     {
         return nil
     }
 
+    /// Name of the nib that backs this view controller.
     public override var nibName: NSNib.Name?
     {
         "CreditViewController"
     }
 
+    /// Insets the text view and renders the credit's license text, if any, once
+    /// the view has loaded.
     public override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -60,6 +77,9 @@ public class CreditViewController: NSViewController
         }
     }
 
+    /// Opens the credit's URL in the default browser, beeping if it has none.
+    ///
+    /// - Parameter sender: The control that triggered the action.
     @IBAction
     private func openURL( _ sender: Any? )
     {

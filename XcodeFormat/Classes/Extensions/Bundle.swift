@@ -24,28 +24,40 @@
 
 import Cocoa
 
+/// Convenience accessors for the bundle's `Info.plist` metadata.
 extension Bundle
 {
+    /// The marketing version (`CFBundleShortVersionString`), or `nil`.
     var bundleShortVersionString: String?
     {
         self.object( forInfoDictionaryKey: "CFBundleShortVersionString" ) as? String
     }
 
+    /// The build number (`CFBundleVersion`), or `nil`.
     var bundleVersion: String?
     {
         self.object( forInfoDictionaryKey: "CFBundleVersion" ) as? String
     }
 
+    /// The bundle's display name (`CFBundleName`), or `nil`.
     var bundleName: String?
     {
         self.object( forInfoDictionaryKey: "CFBundleName" ) as? String
     }
 
+    /// The human-readable copyright notice (`NSHumanReadableCopyright`), or
+    /// `nil`.
     var humanReadableCopyright: String?
     {
         self.object( forInfoDictionaryKey: "NSHumanReadableCopyright" ) as? String
     }
 
+    /// A display version string combining the marketing version and build
+    /// number.
+    ///
+    /// Falls back to `"0.0.0"` when no marketing version is present, returns
+    /// `"version (build)"` when a build number is present, or just the
+    /// marketing version otherwise.
     var humanReadableVersion: String?
     {
         guard let version = self.bundleShortVersionString, version.isEmpty == false

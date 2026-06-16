@@ -24,8 +24,11 @@
 
 import Foundation
 
+/// SHA-256 hashing helper for string contents.
 public extension String
 {
+    /// The SHA-256 digest of the string's UTF-8 bytes as an uppercase
+    /// hexadecimal string, or `nil` if the string cannot be UTF-8 encoded.
     var sha256: String?
     {
         self.data( using: .utf8 )?.sha256

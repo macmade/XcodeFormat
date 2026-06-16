@@ -24,29 +24,46 @@
 
 import Cocoa
 
+/// Window controller listing the stored formatter configurations and letting
+/// the user add, edit, and remove them.
+///
+/// Edits are made through a modal ``ConfigurationWindowController`` sheet, and
+/// changes are written back to ``Preferences``.
 public class ConfigurationsWindowController: NSWindowController
 {
+    /// Backing list of configurations exposed for binding. KVO-observable.
     @objc public private( set ) var configurations: [ Configuration ] = []
 
+    /// Array controller backing the configurations table.
     @IBOutlet private var arrayController: NSArrayController!
 
+    /// Strong reference to the currently presented add/edit sheet controller,
+    /// retained while its sheet is open.
     private var configurationWindowController: ConfigurationWindowController?
 
+    /// Creates the controller with no preloaded window.
     public init()
     {
         super.init( window: nil )
     }
 
+    /// Not supported; this controller is not restored from a coder.
+    ///
+    /// - Parameter coder: The unarchiver (unused).
+    /// - Returns: Always `nil`.
     required init?( coder: NSCoder )
     {
         nil
     }
 
+    /// Name of the nib that backs this window controller.
     public override var windowNibName: NSNib.Name?
     {
         "ConfigurationsWindowController"
     }
 
+    /// Configures the table's ascending-by-name sort and loads the stored
+    /// configurations once the window has loaded.
     public override func windowDidLoad()
     {
         super.windowDidLoad()
@@ -56,6 +73,8 @@ public class ConfigurationsWindowController: NSWindowController
         self.reload()
     }
 
+    /// Replaces the table's contents with the configurations currently stored
+    /// in ``Preferences``.
     public func reload()
     {
         if let content = self.arrayController.content as? [ Any ]
@@ -69,6 +88,10 @@ public class ConfigurationsWindowController: NSWindowController
         }
     }
 
+    /// Presents a sheet to create a new configuration and, if confirmed, adds
+    /// it to the table and persists the updated list.
+    ///
+    /// - Parameter sender: The control that triggered the action.
     @IBAction
     private func new( _ sender: Any? )
     {
@@ -96,6 +119,10 @@ public class ConfigurationsWindowController: NSWindowController
         }
     }
 
+    /// Removes the selected configuration from the table and persists the
+    /// updated list, beeping if there is no selection.
+    ///
+    /// - Parameter sender: The control that triggered the action.
     @IBAction
     private func remove( _ sender: Any? )
     {
@@ -112,6 +139,14 @@ public class ConfigurationsWindowController: NSWindowController
         Preferences.shared.configurations = self.arrayController.content as? [ Configuration ] ?? []
     }
 
+    /// Presents a sheet to edit the selected configuration and, if confirmed,
+    /// persists the changes.
+    ///
+    /// Because the persisted selection is a separate decoded snapshot, it is
+    /// re-synced after the edit when the edited row was the selected one, so the
+    /// extension picks up the new URLs.
+    ///
+    /// - Parameter sender: The control that triggered the action.
     @IBAction
     private func edit( _ sender: Any? )
     {

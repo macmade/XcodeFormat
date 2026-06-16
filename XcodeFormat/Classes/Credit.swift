@@ -24,15 +24,40 @@
 
 import Foundation
 
+/// A third-party acknowledgment shown in the Credits window, bundling a
+/// project's name, author, description, link, license name, and the full
+/// license text loaded from a bundled file.
 public class Credit: NSObject
 {
+    /// Name of the credited project.
     @objc public dynamic var title:           String
+
+    /// Short attribution, typically the author's name.
     @objc public dynamic var abstract:        String
+
+    /// Longer description of the project.
     @objc public dynamic var descriptionText: String
+
+    /// Homepage or repository URL, or `nil` if none / unparseable.
     @objc public dynamic var url:             URL?
+
+    /// Short license identifier (e.g. `"MIT"`), or `nil`.
     @objc public dynamic var license:         String?
+
+    /// Full license text loaded from the bundled file, or `nil` if absent.
     @objc public dynamic var licenseText:     String?
 
+    /// Creates a credit, parsing the URL string and loading the license text
+    /// from the bundle when provided.
+    ///
+    /// - Parameters:
+    ///   - title:           Name of the credited project.
+    ///   - abstract:        Short attribution, typically the author.
+    ///   - descriptionText: Longer description of the project.
+    ///   - url:             Homepage/repository URL string, or `nil`.
+    ///   - license:         Short license identifier, or `nil`.
+    ///   - licenseFile:     Base name of a bundled `.txt` license file whose
+    ///                      contents populate ``licenseText``, or `nil`.
     public init( title: String, abstract: String, descriptionText: String, url: String?, license: String?, licenseFile: String? )
     {
         self.title           = title

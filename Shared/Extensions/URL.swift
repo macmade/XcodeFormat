@@ -24,8 +24,12 @@
 
 import Foundation
 
+/// Hashing and validation helpers for configuration URLs.
 public extension URL
 {
+    /// The SHA-256 digest of the URL's absolute string as an uppercase
+    /// hexadecimal string, used to derive a stable cache file name for a
+    /// configuration URL.
     var sha256: String?
     {
         self.absoluteString.sha256

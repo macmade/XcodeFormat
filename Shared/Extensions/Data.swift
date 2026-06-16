@@ -25,8 +25,11 @@
 import CryptoKit
 import Foundation
 
+/// SHA-256 hashing helper for raw bytes.
 public extension Data
 {
+    /// The SHA-256 digest of the bytes, formatted as an uppercase hexadecimal
+    /// string.
     var sha256: String
     {
         SHA256.hash( data: self ).compactMap

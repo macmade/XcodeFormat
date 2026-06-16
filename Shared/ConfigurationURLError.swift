@@ -34,6 +34,7 @@ public enum ConfigurationURLError: LocalizedError, Equatable
     /// The URL is well-formed but does not use the `https` scheme.
     case insecure
 
+    /// A localized, user-facing message describing why the URL was rejected.
     public var errorDescription: String?
     {
         switch self

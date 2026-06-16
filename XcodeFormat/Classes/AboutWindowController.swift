@@ -24,17 +24,27 @@
 
 import Cocoa
 
+/// Window controller for the "About" panel, displaying the app's name,
+/// version, and copyright pulled from the main bundle's `Info.plist`.
 public class AboutWindowController: NSWindowController
 {
+    /// App name, bound to the window; populated on load. KVO-observable.
     @objc private dynamic var name:      String?
+
+    /// Human-readable version string, bound to the window. KVO-observable.
     @objc private dynamic var version:   String?
+
+    /// Copyright notice, bound to the window. KVO-observable.
     @objc private dynamic var copyright: String?
 
+    /// Name of the nib that backs this window controller.
     public override var windowNibName: NSNib.Name?
     {
         return "AboutWindowController"
     }
 
+    /// Populates the displayed name, version, and copyright from the main
+    /// bundle once the window has loaded.
     public override func windowDidLoad()
     {
         super.windowDidLoad()

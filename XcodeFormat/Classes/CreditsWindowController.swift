@@ -24,22 +24,39 @@
 
 import Cocoa
 
+/// Window controller for the Credits window.
+///
+/// Shows a list of third-party ``Credit`` entries; selecting one embeds a
+/// ``CreditViewController`` in the detail pane to display its license text.
 public class CreditsWindowController: NSWindowController, NSTableViewDelegate, NSTableViewDataSource
 {
+    /// The credited projects shown in the list. KVO-observable.
     @objc private dynamic var items         = [ Credit ]()
+
+    /// Detail view controller for the selected credit, or `nil` when none is
+    /// selected. KVO-observable.
     @objc private dynamic var viewController: CreditViewController?
 
+    /// Array controller backing the credits list.
     @IBOutlet private var arrayController: NSArrayController!
+
+    /// The credits list table view.
     @IBOutlet private var tableView:       NSTableView!
+
+    /// Container view that hosts the selected credit's detail view.
     @IBOutlet private var contentView:     NSView!
 
+    /// KVO token observing the array controller's selection.
     private var selectionObserver: NSKeyValueObservation?
 
+    /// Name of the nib that backs this window controller.
     public override var windowNibName: NSNib.Name
     {
         return "CreditsWindowController"
     }
 
+    /// Populates the credits, observes the selection to swap in the matching
+    /// detail view, and sorts the list by title once the window has loaded.
     public override func windowDidLoad()
     {
         super.windowDidLoad()
@@ -87,6 +104,12 @@ public class CreditsWindowController: NSWindowController, NSTableViewDelegate, N
         self.arrayController.sortDescriptors = [ NSSortDescriptor( key: "title", ascending: true, selector: #selector( NSString.localizedCaseInsensitiveCompare( _: ) ) ) ]
     }
 
+    /// Provides a custom, rounded row view for each row of the credits table.
+    ///
+    /// - Parameters:
+    ///   - tableView: The requesting table view.
+    ///   - row:       Index of the row needing a view.
+    /// - Returns: A ``TableRowView`` instance.
     public func tableView( _ tableView: NSTableView, rowViewForRow row: Int ) -> NSTableRowView?
     {
         TableRowView( frame: NSZeroRect )

@@ -24,19 +24,32 @@
 
 import Foundation
 
+/// A value transformer that reports whether an array is non-empty, for binding
+/// UI (such as enabling a list view) to a collection holding elements.
+///
+/// Non-array input is treated as empty.
 @objc( ArrayIsNotEmpty )
 public class ArrayIsNotEmpty: ValueTransformer
 {
+    /// The class of the transformed value: `NSNumber` (a boolean).
     public override class func transformedValueClass() -> AnyClass
     {
         NSNumber.self
     }
 
+    /// Indicates the transformation is one-way.
+    ///
+    /// - Returns: Always `false`.
     public override class func allowsReverseTransformation() -> Bool
     {
         false
     }
 
+    /// Transforms an array into whether it contains any elements.
+    ///
+    /// - Parameter value: The value to transform, expected to be an array.
+    /// - Returns: `true` if `value` is a non-empty array; otherwise `false`
+    ///            (including when `value` is not an array).
     public override func transformedValue( _ value: Any? ) -> Any?
     {
         guard let value = value as? [ Any ]

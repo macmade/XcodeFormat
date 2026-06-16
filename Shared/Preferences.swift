@@ -24,14 +24,36 @@
 
 import Cocoa
 
+/// Shared, process-wide store for the app's formatter configurations and the
+/// currently selected one.
+///
+/// State is persisted in an app-group `UserDefaults` suite so the main app and
+/// the Xcode source editor extension share the same data, and changes are
+/// broadcast across processes through `DistributedNotificationCenter` so each
+/// process can refresh its view.
 public class Preferences: NSObject
 {
+    /// The single, shared instance used throughout the app and the extension.
     static let shared                = Preferences()
+
+    /// Name of the distributed notification posted whenever the stored
+    /// configurations or selection change, in this or another process.
     static let defaultsChanged = Notification.Name( "com.xs-labs.XcodeFormat.Preferences.ConfigurationsChanged" )
 
+    /// Backing defaults store, scoped to the shared app group so the app and
+    /// the editor extension read and write the same values.
     private var defaults        = UserDefaults( suiteName: "326Y53CJMD.com.xs-labs.XcodeFormat.Shared" )
+
+    /// Opaque token for the distributed-notification observer, retained for the
+    /// lifetime of the instance.
     private var defaultsObserver: Any?
 
+    /// Creates the shared instance and begins observing cross-process change
+    /// notifications.
+    ///
+    /// When a change is observed the in-memory cache is invalidated and manual
+    /// KVO notices are emitted for ``configurations`` and
+    /// ``selectedConfiguration`` so bound UI updates.
     private override init()
     {
         super.init()
@@ -58,8 +80,16 @@ public class Preferences: NSObject
         }
     }
 
+    /// In-memory cache of the decoded configurations, avoiding a property-list
+    /// decode on every read. `nil` means the cache is empty or has been
+    /// invalidated and must be re-decoded on the next read.
     private var cachedConfigurations: [ Configuration ]?
 
+    /// The persisted list of formatter configurations.
+    ///
+    /// Reading decodes the stored property list (caching the result); writing
+    /// re-encodes it, refreshes the cache, and posts ``defaultsChanged`` so
+    /// other processes reload. KVO-observable.
     @objc public dynamic var configurations: [ Configuration ]
     {
         get
@@ -97,6 +127,12 @@ public class Preferences: NSObject
         }
     }
 
+    /// The configuration the editor extension currently applies, or `nil` when
+    /// none is selected.
+    ///
+    /// Reading decodes the stored property list; writing re-encodes it (or
+    /// clears it when the value or encoding is `nil`) and posts
+    /// ``defaultsChanged``. KVO-observable.
     @objc public dynamic var selectedConfiguration: Configuration?
     {
         get

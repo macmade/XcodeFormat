@@ -25,8 +25,15 @@
 import Foundation
 import XcodeKit
 
+/// The Xcode source editor extension principal object.
+///
+/// Xcode instantiates it when the extension is loaded; it warms the local
+/// cache by downloading each known configuration so a format command can run
+/// without waiting on the network.
 class SourceEditorExtension: NSObject, XCSourceEditorExtension
 {
+    /// Called by Xcode once the extension has launched; kicks off a download of
+    /// every stored configuration to populate the shared cache.
     func extensionDidFinishLaunching()
     {
         Preferences.shared.configurations.forEach

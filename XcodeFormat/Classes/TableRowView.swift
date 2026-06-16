@@ -24,15 +24,27 @@
 
 import Cocoa
 
+/// A table row view with rounded corners, hover highlighting, and an
+/// accent-colored selection background.
+///
+/// Tracks the mouse to highlight the row on hover, and optionally paints an
+/// alternating background color when not hovered.
 public class TableRowView: NSTableRowView
 {
+    /// The mouse-tracking area, recreated whenever the bounds change.
     private var trackingArea: NSTrackingArea?
 
+    /// Closure invoked when the mouse enters the row, if set.
     public var onMouseEnter: ( () -> Void )?
+
+    /// Closure invoked when the mouse exits the row, if set.
     public var onMouseExit:  ( () -> Void )?
 
+    /// Whether to paint the alternating (odd-row) background color when not
+    /// hovered. `nil` disables alternating-background painting.
     private var alternate: Bool?
 
+    /// Whether the mouse is currently over the row; redraws on change.
     @objc private dynamic var mouseOver = false
     {
         didSet
@@ -41,6 +53,12 @@ public class TableRowView: NSTableRowView
         }
     }
 
+    /// Creates a row view that paints an alternating background color.
+    ///
+    /// - Parameters:
+    ///   - frame:     The view's frame rectangle.
+    ///   - alternate: `true` to paint the odd-row background color, `false` for
+    ///                the even-row color.
     public convenience init( frame: NSRect, alternate: Bool )
     {
         self.init( frame: frame )
@@ -48,16 +66,24 @@ public class TableRowView: NSTableRowView
         self.alternate = alternate
     }
 
+    /// Creates a row view with no alternating-background painting.
+    ///
+    /// - Parameter frame: The view's frame rectangle.
     public override init( frame: NSRect )
     {
         super.init( frame: frame )
     }
 
+    /// Creates a row view from an unarchiver.
+    ///
+    /// - Parameter coder: The unarchiver to decode from.
     public required init?( coder: NSCoder )
     {
         super.init( coder: coder )
     }
 
+    /// Rebuilds the mouse-tracking area to cover the current bounds so hover
+    /// enter/exit events keep firing after layout changes.
     public override func updateTrackingAreas()
     {
         super.updateTrackingAreas()
@@ -73,6 +99,9 @@ public class TableRowView: NSTableRowView
         self.addTrackingArea( trackingArea )
     }
 
+    /// Marks the row as hovered and invokes ``onMouseEnter``.
+    ///
+    /// - Parameter event: The mouse-entered event.
     public override func mouseEntered( with event: NSEvent )
     {
         super.mouseEntered( with: event )
@@ -81,6 +110,9 @@ public class TableRowView: NSTableRowView
         self.mouseOver = true
     }
 
+    /// Clears the hovered state and invokes ``onMouseExit``.
+    ///
+    /// - Parameter event: The mouse-exited event.
     public override func mouseExited( with event: NSEvent )
     {
         super.mouseExited( with: event )
@@ -89,6 +121,10 @@ public class TableRowView: NSTableRowView
         self.mouseOver = false
     }
 
+    /// Draws the row's rounded background: an accent tint when hovered, or the
+    /// alternating content color when ``alternate`` is set.
+    ///
+    /// - Parameter rect: The rectangle to fill.
     public override func drawBackground( in rect: NSRect )
     {
         if self.mouseOver
@@ -116,6 +152,9 @@ public class TableRowView: NSTableRowView
         }
     }
 
+    /// Draws the selection highlight as a rounded, accent-colored fill.
+    ///
+    /// - Parameter rect: The rectangle to fill.
     public override func drawSelection( in rect: NSRect )
     {
         let color = NSColor.controlAccentColor

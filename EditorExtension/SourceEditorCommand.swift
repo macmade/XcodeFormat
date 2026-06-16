@@ -26,8 +26,26 @@ import Foundation
 import UniformTypeIdentifiers
 import XcodeKit
 
+/// The Xcode source editor command that formats the active buffer.
+///
+/// Invoked from Xcode's *Editor ▸ XcodeFormat* menu, it picks the formatter
+/// matching the buffer's type — SwiftFormat for Swift, uncrustify for the C
+/// family — using the user's selected configuration, then rewrites the buffer
+/// and restores the caret.
 public class SourceEditorCommand: NSObject, XCSourceEditorCommand
 {
+    /// Entry point Xcode calls to run the command on the current buffer.
+    ///
+    /// Resolves the selected configuration and the buffer's uniform type, makes
+    /// the needed configuration files available locally, and formats the buffer
+    /// with the matching tool. Does nothing (reporting success) when there is no
+    /// selected configuration or the buffer's type is unknown.
+    ///
+    /// - Parameters:
+    ///   - invocation:        The buffer and command context provided by Xcode.
+    ///   - completionHandler: Called once formatting finishes; receives an error
+    ///                        to surface in Xcode's banner, or `nil` on success
+    ///                        or a silent no-op.
     public func perform( with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping ( Error? ) -> Void )
     {
         guard let configuration = Preferences.shared.selectedConfiguration,
@@ -67,6 +85,22 @@ public class SourceEditorCommand: NSObject, XCSourceEditorCommand
         }
     }
 
+    /// Runs a formatter over the buffer's full contents and, if it produced
+    /// changed output, replaces the buffer and restores the caret.
+    ///
+    /// The buffer text is piped to the executable as UTF-8 standard input. The
+    /// result is classified by ``FormatterOutcome``; only a `.formatted`
+    /// outcome rewrites the buffer. When a single (empty) selection exists, its
+    /// caret is mapped onto the formatted text via
+    /// ``CursorPosition/restored(in:line:column:)``.
+    ///
+    /// - Parameters:
+    ///   - buffer:     The source buffer to read from and write back to.
+    ///   - executable: Name of the formatter executable to run.
+    ///   - arguments:  Command-line arguments for the formatter.
+    /// - Throws: ``FormatterError/executableNotFound(_:)`` if the tool could not
+    ///           be launched, or ``FormatterError/failed(executable:status:message:)``
+    ///           if it exited with a non-zero status.
     private func format( buffer: XCSourceTextBuffer, executable: String, arguments: [ String ] ) throws
     {
         guard let data = buffer.completeBuffer.data( using: .utf8 )

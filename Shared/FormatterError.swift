@@ -35,6 +35,8 @@ public enum FormatterError: LocalizedError, Equatable
     /// its captured standard-error text.
     case failed( executable: String, status: Int32, message: String )
 
+    /// A localized, user-facing description of the failure, including the
+    /// formatter's trimmed standard-error text when one is available.
     public var errorDescription: String?
     {
         switch self

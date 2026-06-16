@@ -28,9 +28,17 @@ import Foundation
 /// convention of `XCSourceTextPosition` (columns are UTF-16 code-unit offsets).
 public struct CursorPosition: Equatable
 {
+    /// Zero-based line index of the caret.
     public let line:   Int
+
+    /// Zero-based column of the caret, measured in UTF-16 code units.
     public let column: Int
 
+    /// Creates a cursor position from a line index and column.
+    ///
+    /// - Parameters:
+    ///   - line:   Zero-based line index.
+    ///   - column: Zero-based column, in UTF-16 code units.
     public init( line: Int, column: Int )
     {
         self.line   = line

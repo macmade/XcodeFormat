@@ -25,14 +25,31 @@
 import CryptoKit
 import Foundation
 
+/// A named formatting profile pairing a SwiftFormat configuration URL with an
+/// uncrustify configuration URL.
+///
+/// Configurations are persisted via ``Preferences`` and synced between the
+/// main app and the editor extension. Each remote configuration file is
+/// downloaded over HTTPS into the shared app-group container, keyed by a hash
+/// of its URL and stored alongside a content hash so a tampered or partial
+/// cache can be rejected at read time.
 @objc
 public class Configuration: NSObject, Codable
 {
+    /// User-visible name of the configuration.
     @objc public dynamic var name:         String
+
+    /// URL of the SwiftFormat configuration file, or `nil` if none.
     @objc public dynamic var swiftFormat:  URL?
+
+    /// URL of the uncrustify configuration file, or `nil` if none.
     @objc public dynamic var uncrustify:   URL?
+
+    /// Whether a download of this configuration's files is in progress.
+    /// KVO-observable so UI can show progress.
     @objc public dynamic var downloading = false
 
+    /// The built-in configurations seeded on first launch.
     public static var defaultConfigurations: [ Configuration ]
     {
         [
@@ -43,6 +60,13 @@ public class Configuration: NSObject, Codable
         ]
     }
 
+    /// Creates a configuration from a name and an optional URL for each
+    /// formatter.
+    ///
+    /// - Parameters:
+    ///   - name:        User-visible name.
+    ///   - swiftFormat: SwiftFormat configuration URL, or `nil`.
+    ///   - uncrustify:  Uncrustify configuration URL, or `nil`.
     public init( name: String, swiftFormat: URL?, uncrustify: URL? )
     {
         self.name        = name
@@ -52,11 +76,17 @@ public class Configuration: NSObject, Codable
         super.init()
     }
 
+    /// A textual description including the configuration's name, for debugging.
     public override var description: String
     {
         "\( super.description ): \( self.name )"
     }
 
+    /// Compares two configurations by value.
+    ///
+    /// - Parameter object: The object to compare against.
+    /// - Returns: `true` when `object` is a `Configuration` with the same name
+    ///            and formatter URLs.
     public override func isEqual( _ object: Any? ) -> Bool
     {
         guard let configuration = object as? Configuration
@@ -75,6 +105,8 @@ public class Configuration: NSObject, Codable
         return false
     }
 
+    /// A hash derived from the name and formatter URLs, consistent with
+    /// ``isEqual(_:)``.
     public override var hash: Int
     {
         var hasher = Hasher()
@@ -86,6 +118,11 @@ public class Configuration: NSObject, Codable
         return hasher.finalize()
     }
 
+    /// Downloads this configuration's formatter files into the shared cache.
+    ///
+    /// Coalesces concurrent calls via the ``downloading`` flag (checked and set
+    /// on the main queue), then fetches each non-`nil` URL on a background
+    /// queue, clearing the flag when finished.
     public func download()
     {
         DispatchQueue.main.async
@@ -117,6 +154,15 @@ public class Configuration: NSObject, Codable
         }
     }
 
+    /// Downloads a single configuration file and writes it to the shared cache.
+    ///
+    /// Rejects non-HTTPS URLs, names the cached file by the hash of its URL,
+    /// and writes a `<hash>.sha256` sidecar holding the content hash so the
+    /// cache can be integrity-checked on read. File writes are serialized
+    /// through an `NSFileCoordinator`. Any failure is silently ignored, leaving
+    /// the cache untouched.
+    ///
+    /// - Parameter url: HTTPS URL of the configuration file to fetch.
     private func download( url: URL )
     {
         guard url.scheme?.lowercased() == "https",
@@ -154,6 +200,10 @@ public class Configuration: NSObject, Codable
     /// Fetches a configuration over HTTPS with an explicit timeout, returning
     /// the body only for a 2xx response. Runs synchronously; intended to be
     /// called from a background queue.
+    ///
+    /// - Parameter url: URL of the configuration file to fetch.
+    /// - Returns: The response body for a 2xx response, or `nil` on a transport
+    ///            error or non-2xx status.
     private static func fetch( url: URL ) -> Data?
     {
         var request        = URLRequest( url: url, timeoutInterval: 30 )
@@ -189,6 +239,23 @@ public class Configuration: NSObject, Codable
         return result
     }
 
+    /// Provides local copies of the cached configuration files to a closure,
+    /// then lets the caller clean them up.
+    ///
+    /// Each available file is copied to a unique temporary location (its
+    /// integrity verified against the stored content hash). If a configured URL
+    /// has no valid cached copy, a fresh ``download()`` is triggered for next
+    /// time. When neither file is available the `error` closure is called and
+    /// `completion` is not. Otherwise `completion` receives the temporary URLs
+    /// plus a `finished` closure that deletes them; the caller must invoke
+    /// `finished` once done.
+    ///
+    /// - Parameters:
+    ///   - completion: Called with the temporary `swiftFormat` / `uncrustify`
+    ///                 URLs (either may be `nil`) and a `finished` cleanup
+    ///                 closure.
+    ///   - error:      Called instead of `completion` when no cached file is
+    ///                 available.
     public func withConfigurations( completion: ( ( swiftFormat: URL?, uncrustify: URL?, finished: () -> Void ) ) -> Void, error: () -> Void )
     {
         let swiftFormat = self.copy( url: self.swiftFormat )
@@ -225,6 +292,19 @@ public class Configuration: NSObject, Codable
         completion( ( swiftFormat: swiftFormat, uncrustify: uncrustify, finished: finished ) )
     }
 
+    /// Copies a cached configuration file to a unique temporary URL after
+    /// verifying its integrity.
+    ///
+    /// Locates the cached file by the hash of `url`, and — when a `<hash>.sha256`
+    /// sidecar exists — rejects the copy if the bytes no longer match, so a
+    /// tampered or partially written cache is never fed to the formatter. File
+    /// access is serialized through an `NSFileCoordinator`.
+    ///
+    /// - Parameter url: The original configuration URL whose cached copy is
+    ///                  wanted, or `nil`.
+    /// - Returns: A temporary URL holding a fresh copy of the cached file, or
+    ///            `nil` if `url` is `nil`, nothing is cached, or the integrity
+    ///            check or copy fails.
     private func copy( url: URL? ) -> URL?
     {
         guard let url       = url,

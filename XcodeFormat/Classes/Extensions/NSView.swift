@@ -24,8 +24,18 @@
 
 import Cocoa
 
+/// Auto Layout convenience for embedding a subview that fills its superview.
 public extension NSView
 {
+    /// Adds a subview constrained to fill the receiver's bounds.
+    ///
+    /// Disables the subview's autoresizing-mask translation and pins its center,
+    /// width, and height to the receiver so it tracks the receiver's size.
+    ///
+    /// - Parameters:
+    ///   - view:           The subview to add and pin.
+    ///   - removeExisting: When `true` (the default), removes all current
+    ///                     subviews before adding `view`.
     func addFillingSubview( _ view: NSView, removeExisting: Bool = true )
     {
         if removeExisting

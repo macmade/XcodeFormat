@@ -24,8 +24,13 @@
 
 import Foundation
 
+/// Access to the app group's shared container, used to exchange cached
+/// configuration files between the app and the editor extension.
 public extension FileManager
 {
+    /// URL of the app group's shared container, used to exchange cached
+    /// configuration files between the main app and the editor extension, or
+    /// `nil` if the container is unavailable.
     static var sharedContainerURL: URL?
     {
         FileManager.default.containerURL( forSecurityApplicationGroupIdentifier: "326Y53CJMD.com.xs-labs.XcodeFormat.Shared" )
