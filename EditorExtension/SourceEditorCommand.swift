@@ -41,17 +41,25 @@ public class SourceEditorCommand: NSObject, XCSourceEditorCommand
 
         configuration.withConfigurations
         {
-            if uti == .swiftSource, let config = $0.swiftFormat?.path
+            do
             {
-                self.format( buffer: invocation.buffer, executable: "swiftformat", arguments: [ "--config", config ] )
-            }
-            else if let language = UncrustifyLanguage.argument( for: uti ), let config = $0.uncrustify?.path
-            {
-                self.format( buffer: invocation.buffer, executable: "uncrustify", arguments: [ "-c", config, "-l", language, "-q" ] )
-            }
+                if uti == .swiftSource, let config = $0.swiftFormat?.path
+                {
+                    try self.format( buffer: invocation.buffer, executable: "swiftformat", arguments: [ "--config", config ] )
+                }
+                else if let language = UncrustifyLanguage.argument( for: uti ), let config = $0.uncrustify?.path
+                {
+                    try self.format( buffer: invocation.buffer, executable: "uncrustify", arguments: [ "-c", config, "-l", language, "-q" ] )
+                }
 
-            $0.finished()
-            completionHandler( nil )
+                $0.finished()
+                completionHandler( nil )
+            }
+            catch
+            {
+                $0.finished()
+                completionHandler( error )
+            }
         }
         error:
         {
@@ -59,24 +67,30 @@ public class SourceEditorCommand: NSObject, XCSourceEditorCommand
         }
     }
 
-    private func format( buffer: XCSourceTextBuffer, executable: String, arguments: [ String ] )
+    private func format( buffer: XCSourceTextBuffer, executable: String, arguments: [ String ] ) throws
     {
-        guard let data   = buffer.completeBuffer.data( using: .utf8 ),
-              let task   = Task.run( name: executable, arguments: arguments, input: data ),
-              let status = task.terminationStatus,
-              let out    = String( data: task.standardOutput, encoding: .utf8 ),
-              status     == 0
+        guard let data = buffer.completeBuffer.data( using: .utf8 )
         else
         {
             return
         }
 
-        if buffer.completeBuffer == out
+        guard let task = Task.run( name: executable, arguments: arguments, input: data )
+        else
         {
-            return
+            throw FormatterError.executableNotFound( executable )
         }
 
-        if out.trimmingCharacters( in: .whitespacesAndNewlines ).isEmpty
+        guard let status = task.terminationStatus
+        else
+        {
+            throw FormatterError.failed( executable: executable, status: -1, message: "" )
+        }
+
+        let outcome = try FormatterOutcome.classify( executable: executable, input: buffer.completeBuffer, status: status, standardOutput: task.standardOutput, standardError: task.standardError )
+
+        guard case .formatted( let out ) = outcome
+        else
         {
             return
         }
