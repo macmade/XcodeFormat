@@ -105,32 +105,15 @@ public class SourceEditorCommand: NSObject, XCSourceEditorCommand
 
         buffer.selections.removeAllObjects()
 
-        guard let insertion = insertion
+        guard let insertion = insertion,
+              let restored  = CursorPosition.restored( in: out, line: insertion.start.line, column: insertion.start.column )
         else
         {
             return
         }
 
-        let lines = out.components( separatedBy: .newlines )
+        let pos = XCSourceTextPosition( line: restored.line, column: restored.column )
 
-        if insertion.start.line >= lines.count
-        {
-            return
-        }
-
-        let line = lines[ insertion.start.line ]
-
-        if insertion.start.column < line.count
-        {
-            let pos = XCSourceTextPosition( line: insertion.start.line, column: insertion.start.column )
-
-            buffer.selections.add( XCSourceTextRange( start: pos, end: pos ) )
-        }
-        else
-        {
-            let pos = XCSourceTextPosition( line: insertion.start.line, column: line.count )
-
-            buffer.selections.add( XCSourceTextRange( start: pos, end: pos ) )
-        }
+        buffer.selections.add( XCSourceTextRange( start: pos, end: pos ) )
     }
 }
