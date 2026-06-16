@@ -74,6 +74,11 @@
                 
                 if( s == nil )
                 {
+                    if( path != NULL )
+                    {
+                        CFRelease( path );
+                    }
+
                     continue;
                 }
                 
@@ -178,6 +183,11 @@
                 
                 if( s == nil )
                 {
+                    if( path != NULL )
+                    {
+                        CFRelease( path );
+                    }
+
                     continue;
                 }
                 
