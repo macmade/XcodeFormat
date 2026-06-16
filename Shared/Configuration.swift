@@ -154,6 +154,44 @@ public class Configuration: NSObject, Codable
         }
     }
 
+    /// Synchronously downloads any of this configuration's files that are not
+    /// already cached, blocking the calling thread until each finishes.
+    ///
+    /// Unlike ``download()``, this performs no dispatching: it fetches the
+    /// missing files on the caller's thread. Intended for command-line use,
+    /// where there is no run loop and the work must complete before formatting.
+    /// Already-cached files are left untouched, so repeat invocations avoid
+    /// needless network traffic.
+    public func downloadSynchronouslyIfNeeded()
+    {
+        if let url = self.swiftFormat, self.isCached( url: url ) == false
+        {
+            self.download( url: url )
+        }
+
+        if let url = self.uncrustify, self.isCached( url: url ) == false
+        {
+            self.download( url: url )
+        }
+    }
+
+    /// Reports whether a cached file already exists for a configuration URL.
+    ///
+    /// - Parameter url: The original configuration URL whose cache is checked.
+    /// - Returns: `true` when a file named by the hash of `url` exists in the
+    ///            shared cache.
+    private func isCached( url: URL ) -> Bool
+    {
+        guard let sha256    = url.sha256,
+              let container = FileManager.sharedContainerURL?.appendingPathComponent( "Configurations" )
+        else
+        {
+            return false
+        }
+
+        return FileManager.default.fileExists( atPath: container.appendingPathComponent( sha256 ).path )
+    }
+
     /// Downloads a single configuration file and writes it to the shared cache.
     ///
     /// Rejects non-HTTPS URLs, names the cached file by the hash of its URL,

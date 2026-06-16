@@ -98,6 +98,30 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate
         }
     }
 
+    /// Runs the command-line interface and exits, before any AppKit setup, when
+    /// the process was started from a shell rather than by launchd.
+    ///
+    /// Apps launched through LaunchServices — a Finder double-click, `open`, or
+    /// a login item — are reparented to launchd, so their parent process is
+    /// PID 1; those keep running as the menu-bar app. When the bundle binary is
+    /// executed directly from a terminal its parent is the invoking shell, so
+    /// this process acts as a formatter CLI instead, even when no arguments are
+    /// given. ``XcodeFormatCLI`` parses, runs, and self-exits on help or error;
+    /// on success it returns and this method exits explicitly so the GUI never
+    /// starts.
+    ///
+    /// - Parameter notification: The launch notification (unused).
+    public func applicationWillFinishLaunching( _ notification: Notification )
+    {
+        if getppid() == 1
+        {
+            return
+        }
+
+        XcodeFormatCLI.main( Array( CommandLine.arguments.dropFirst() ) )
+        exit( EXIT_SUCCESS )
+    }
+
     /// Performs first-launch setup once the app has finished launching.
     ///
     /// Builds the status item, observes configuration changes, seeds the
