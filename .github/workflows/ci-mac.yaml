@@ -6,7 +6,7 @@ jobs:
         strategy:
             matrix:
                 run-config:
-                    - { scheme: 'Xcode Format', configuration: 'Debug',   project: 'XcodeFormat.xcodeproj', build: 1, analyze: 1, test: 0, info: 1, destination: 'platform=macOS' }
+                    - { scheme: 'Xcode Format', configuration: 'Debug',   project: 'XcodeFormat.xcodeproj', build: 1, analyze: 1, test: 1, info: 1, destination: 'platform=macOS' }
                     - { scheme: 'Xcode Format', configuration: 'Release', project: 'XcodeFormat.xcodeproj', build: 1, analyze: 1, test: 0, info: 1, destination: 'platform=macOS' }
         steps:
             
