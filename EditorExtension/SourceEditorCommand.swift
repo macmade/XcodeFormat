@@ -45,6 +45,10 @@ public class SourceEditorCommand: NSObject, XCSourceEditorCommand
             {
                 self.format( buffer: invocation.buffer, executable: "swiftformat", arguments: [ "--config", config ] )
             }
+            else if let language = UncrustifyLanguage.argument( for: uti ), let config = $0.uncrustify?.path
+            {
+                self.format( buffer: invocation.buffer, executable: "uncrustify", arguments: [ "-c", config, "-l", language, "-q" ] )
+            }
 
             $0.finished()
             completionHandler( nil )
