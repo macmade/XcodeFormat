@@ -31,6 +31,15 @@ import GitHubUpdates
 /// windows (About, Credits, Configurations, Preferences), seeds and keeps the
 /// stored configurations downloaded, installs the Automator Quick Action
 /// workflow, and drives GitHub-based update checks.
+///
+/// - Note: The menu-bar app is **intentionally not sandboxed** (its entitlements
+///   request no `com.apple.security.app-sandbox`). It registers a login item and
+///   installs an Automator Quick Action into the user's Library, neither of which
+///   is permitted under the App Sandbox, so the app is **not Mac App Store
+///   distributable** by design. It also downloads formatter configurations from
+///   remote URLs; those downloads are hardened (https-only, status-checked,
+///   timed out, content-hash verified) in `Configuration`. This is a deliberate
+///   trade-off, not an oversight.
 @main
 public class ApplicationDelegate: NSObject, NSApplicationDelegate
 {

@@ -31,6 +31,15 @@ import Cocoa
 /// the Xcode source editor extension share the same data, and changes are
 /// broadcast across processes through `DistributedNotificationCenter` so each
 /// process can refresh its view.
+///
+/// - Note: The Xcode source editor extension *is* sandboxed, where
+///   `DistributedNotificationCenter` posts may silently no-op. This is harmless
+///   by design: the extension never relies on receiving these notifications —
+///   it reads ``selectedConfiguration`` fresh from the shared defaults on every
+///   `perform()`, so it always sees the latest selection regardless of whether
+///   the broadcast was delivered. The notifications are a live-refresh
+///   convenience for the (non-sandboxed) app's bound UI, not a correctness
+///   dependency.
 public class Preferences: NSObject
 {
     /// The single, shared instance used throughout the app and the extension.
