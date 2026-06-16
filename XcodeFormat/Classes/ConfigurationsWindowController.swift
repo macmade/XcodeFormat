@@ -127,6 +127,11 @@ public class ConfigurationsWindowController: NSWindowController
             return
         }
 
+        // Capture whether this row is the persisted selection *before* the sheet
+        // edits the object in place. selectedConfiguration is a separate decoded
+        // snapshot, so without re-syncing it would keep the pre-edit URLs.
+        let wasSelected = Preferences.shared.selectedConfiguration.map { configuration.isEqual( $0 ) } ?? false
+
         controller.configuration           = configuration
         self.configurationWindowController = controller
 
@@ -135,6 +140,11 @@ public class ConfigurationsWindowController: NSWindowController
             if $0 == .OK
             {
                 Preferences.shared.configurations = self.arrayController.content as? [ Configuration ] ?? []
+
+                if wasSelected
+                {
+                    Preferences.shared.selectedConfiguration = configuration
+                }
             }
         }
     }

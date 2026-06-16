@@ -104,4 +104,36 @@ struct ConfigurationTests
         #expect( configuration.isEqual( "X" ) == false )
         #expect( configuration.isEqual( nil ) == false )
     }
+
+    @Test( "Equal configurations produce equal hashes" )
+    func equalConfigurationsHaveEqualHashes()
+    {
+        let lhs = Configuration( name: "X", swiftFormat: URL( string: "https://a" ), uncrustify: URL( string: "https://b" ) )
+        let rhs = Configuration( name: "X", swiftFormat: URL( string: "https://a" ), uncrustify: URL( string: "https://b" ) )
+
+        #expect( lhs == rhs )
+        #expect( lhs.hash == rhs.hash )
+        #expect( lhs.hashValue == rhs.hashValue )
+    }
+
+    @Test( "Equal configurations coalesce in a Set" )
+    func equalConfigurationsCoalesceInASet()
+    {
+        let lhs = Configuration( name: "X", swiftFormat: URL( string: "https://a" ), uncrustify: URL( string: "https://b" ) )
+        let rhs = Configuration( name: "X", swiftFormat: URL( string: "https://a" ), uncrustify: URL( string: "https://b" ) )
+
+        let set: Set< Configuration > = [ lhs, rhs ]
+
+        #expect( set.count == 1 )
+    }
+
+    @Test( "Equal configurations with nil URLs produce equal hashes" )
+    func equalConfigurationsWithNilURLsHaveEqualHashes()
+    {
+        let lhs = Configuration( name: "Empty", swiftFormat: nil, uncrustify: nil )
+        let rhs = Configuration( name: "Empty", swiftFormat: nil, uncrustify: nil )
+
+        #expect( lhs == rhs )
+        #expect( lhs.hash == rhs.hash )
+    }
 }

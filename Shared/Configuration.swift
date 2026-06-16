@@ -57,11 +57,6 @@ public class Configuration: NSObject, Codable
         "\( super.description ): \( self.name )"
     }
 
-    public override func isEqual( to object: Any? ) -> Bool
-    {
-        self.isEqual( object )
-    }
-
     public override func isEqual( _ object: Any? ) -> Bool
     {
         guard let configuration = object as? Configuration
@@ -78,6 +73,17 @@ public class Configuration: NSObject, Codable
         }
 
         return false
+    }
+
+    public override var hash: Int
+    {
+        var hasher = Hasher()
+
+        hasher.combine( self.name )
+        hasher.combine( self.swiftFormat )
+        hasher.combine( self.uncrustify )
+
+        return hasher.finalize()
     }
 
     public func download()
