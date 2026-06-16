@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21225" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="24506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21225"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24506"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,20 +16,20 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" fullSizeContentView="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="400" height="270"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="3008" height="1228"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="3008" height="1223"/>
             <value key="minSize" type="size" width="400" height="270"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="406" height="193"/>
-                <autoresizingMask key="autoresizingMask"/>
+                <rect key="frame" x="0.0" y="0.0" width="404" height="201"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <visualEffectView blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="9bV-Gp-IRG">
-                        <rect key="frame" x="0.0" y="0.0" width="406" height="193"/>
+                        <rect key="frame" x="0.0" y="0.0" width="404" height="201"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="15" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XUZ-qm-mwa">
-                                <rect key="frame" x="20" y="20" width="230" height="133"/>
+                                <rect key="frame" x="20" y="20" width="228" height="141"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Di-tv-nyG">
-                                        <rect key="frame" x="-2" y="116" width="108" height="18"/>
+                                        <rect key="frame" x="0.0" y="125" width="104" height="16"/>
                                         <buttonCell key="cell" type="check" title="Start at Login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="izj-Ur-9Sn">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -40,7 +39,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1Bc-V1-cyf">
-                                        <rect key="frame" x="-2" y="85" width="232" height="18"/>
+                                        <rect key="frame" x="0.0" y="94" width="228" height="16"/>
                                         <buttonCell key="cell" type="check" title="Display Configuration in Menu Bar" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="WT7-0b-dCB">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -50,10 +49,10 @@
                                         </connections>
                                     </button>
                                     <box verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="aDu-Uu-IEX">
-                                        <rect key="frame" x="0.0" y="68" width="230" height="5"/>
+                                        <rect key="frame" x="0.0" y="76" width="228" height="5"/>
                                     </box>
                                     <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZHC-DM-SXn">
-                                        <rect key="frame" x="-7" y="28" width="187" height="32"/>
+                                        <rect key="frame" x="0.0" y="39" width="177" height="24"/>
                                         <buttonCell key="cell" type="push" title="Manage Configurations..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ypj-AP-7Ka">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -67,7 +66,7 @@
                                         </connections>
                                     </button>
                                     <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FbL-Me-5WT">
-                                        <rect key="frame" x="-7" y="-7" width="159" height="32"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="149" height="24"/>
                                         <buttonCell key="cell" type="push" title="Check for Updates..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5Fi-Hb-LEv">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -101,7 +100,7 @@
                                 </customSpacing>
                             </stackView>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h3k-mM-Jie">
-                                <rect key="frame" x="258" y="23" width="128" height="128"/>
+                                <rect key="frame" x="256" y="27" width="128" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="128" id="7PB-IP-6yF"/>
                                     <constraint firstAttribute="height" constant="128" id="Y2L-xp-jrT"/>
