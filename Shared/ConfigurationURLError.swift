@@ -24,38 +24,22 @@
 
 import Foundation
 
-public extension URL
+/// A problem with a user-entered configuration URL, surfaced inline in the
+/// configuration sheet.
+public enum ConfigurationURLError: LocalizedError, Equatable
 {
-    var sha256: String?
+    /// The string is not a parseable URL.
+    case malformed
+
+    /// The URL is well-formed but does not use the `https` scheme.
+    case insecure
+
+    public var errorDescription: String?
     {
-        self.absoluteString.sha256
-    }
-
-    /// Validates a user-entered configuration URL string.
-    ///
-    /// - An empty string means "no URL provided" and returns `nil`.
-    /// - A string that does not parse as a URL throws `.malformed`.
-    /// - A URL that does not use the `https` scheme throws `.insecure`.
-    /// - Otherwise the parsed `https` URL is returned.
-    static func configurationURL( from string: String ) throws -> URL?
-    {
-        if string.isEmpty
+        switch self
         {
-            return nil
+            case .malformed: return "Please enter a valid URL"
+            case .insecure:  return "Please enter an https URL"
         }
-
-        guard let url = URL( string: string )
-        else
-        {
-            throw ConfigurationURLError.malformed
-        }
-
-        guard url.scheme?.lowercased() == "https"
-        else
-        {
-            throw ConfigurationURLError.insecure
-        }
-
-        return url
     }
 }

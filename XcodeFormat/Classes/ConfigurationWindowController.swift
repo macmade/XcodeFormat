@@ -105,19 +105,27 @@ public class ConfigurationWindowController: NSWindowController
             return
         }
 
-        let swiftFormat = URL( string: self.swiftFormat )
-        let uncrustify  = URL( string: self.uncrustify )
+        let swiftFormat: URL?
+        let uncrustify:  URL?
 
-        if self.swiftFormat.isEmpty == false, swiftFormat == nil
+        do
         {
-            self.swiftFormatError = "Please enter a valid URL"
+            swiftFormat = try URL.configurationURL( from: self.swiftFormat )
+        }
+        catch
+        {
+            self.swiftFormatError = error.localizedDescription
 
             return
         }
 
-        if self.uncrustify.isEmpty == false, uncrustify == nil
+        do
         {
-            self.uncrustifyError = "Please enter a valid URL"
+            uncrustify = try URL.configurationURL( from: self.uncrustify )
+        }
+        catch
+        {
+            self.uncrustifyError = error.localizedDescription
 
             return
         }

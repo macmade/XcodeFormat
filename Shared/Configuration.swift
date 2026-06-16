@@ -119,9 +119,15 @@ public class Configuration: NSObject, Codable
 
     private func download( url: URL )
     {
-        guard let sha256    = url.sha256,
-              let data      = try? Data( contentsOf: url ),
+        guard url.scheme?.lowercased() == "https",
+              let sha256    = url.sha256,
               let container = FileManager.sharedContainerURL?.appendingPathComponent( "Configurations" )
+        else
+        {
+            return
+        }
+
+        guard let data = Configuration.fetch( url: url )
         else
         {
             return
@@ -136,6 +142,51 @@ public class Configuration: NSObject, Codable
         {
             try? data.write( to: $0 )
         }
+
+        // Store a content hash alongside the cached file so a tampered or
+        // partially-written cache can be detected and rejected at read time.
+        coordinator.coordinate( writingItemAt: container.appendingPathComponent( "\( sha256 ).sha256" ), error: &error )
+        {
+            try? Data( data.sha256.utf8 ).write( to: $0 )
+        }
+    }
+
+    /// Fetches a configuration over HTTPS with an explicit timeout, returning
+    /// the body only for a 2xx response. Runs synchronously; intended to be
+    /// called from a background queue.
+    private static func fetch( url: URL ) -> Data?
+    {
+        var request        = URLRequest( url: url, timeoutInterval: 30 )
+        request.httpMethod = "GET"
+
+        let semaphore = DispatchSemaphore( value: 0 )
+        var result:    Data?
+
+        let task = URLSession.shared.dataTask( with: request )
+        {
+            data, response, error in
+
+            defer
+            {
+                semaphore.signal()
+            }
+
+            guard error == nil,
+                  let http = response as? HTTPURLResponse,
+                  ( 200 ..< 300 ).contains( http.statusCode ),
+                  let data = data
+            else
+            {
+                return
+            }
+
+            result = data
+        }
+
+        task.resume()
+        semaphore.wait()
+
+        return result
     }
 
     public func withConfigurations( completion: ( ( swiftFormat: URL?, uncrustify: URL?, finished: () -> Void ) ) -> Void, error: () -> Void )
@@ -202,6 +253,18 @@ public class Configuration: NSObject, Codable
             guard let data = try? Data( contentsOf: $0 )
             else
             {
+                return
+            }
+
+            // If a content hash was stored at download time, the bytes we just
+            // read must match it; otherwise the cache is tampered or partial and
+            // must not be fed to the formatter.
+            let hashURL = container.appendingPathComponent( "\( sha256 ).sha256" )
+
+            if let expected = try? String( contentsOf: hashURL, encoding: .utf8 ), expected != data.sha256
+            {
+                writeError = NSError( domain: "com.xs-labs.XcodeFormat", code: -1, userInfo: [ NSLocalizedDescriptionKey: "The cached configuration failed its integrity check." ] )
+
                 return
             }
 
