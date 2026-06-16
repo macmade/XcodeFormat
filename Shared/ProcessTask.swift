@@ -24,7 +24,7 @@
 
 import Foundation
 
-public class Task
+public class ProcessTask
 {
     private var task:    Process
     private var pipeOut: Pipe
@@ -34,7 +34,7 @@ public class Task
     public private( set ) var standardOutput:    Data
     public private( set ) var standardError:     Data
 
-    public class func run( name: String, arguments: [ String ], input: Data? ) -> Task?
+    public class func run( name: String, arguments: [ String ], input: Data? ) -> ProcessTask?
     {
         guard let executable = Bundle.main.executableURL?.deletingLastPathComponent().appendingPathComponent( name )
         else
@@ -45,7 +45,7 @@ public class Task
         return self.run( executableURL: executable, arguments: arguments, input: input )
     }
 
-    public class func run( executableURL: URL, arguments: [ String ], input: Data? ) -> Task?
+    public class func run( executableURL: URL, arguments: [ String ], input: Data? ) -> ProcessTask?
     {
         guard FileManager.default.fileExists( atPath: executableURL.path )
         else
@@ -53,7 +53,7 @@ public class Task
             return nil
         }
 
-        let task = Task( executable: executableURL, arguments: arguments )
+        let task = ProcessTask( executable: executableURL, arguments: arguments )
 
         task.run( input: input )
 

@@ -25,7 +25,7 @@
 import Foundation
 import Testing
 
-@Suite( "Task — child-process I/O" )
+@Suite( "ProcessTask — child-process I/O" )
 struct TaskTests
 {
     // A payload several times larger than the 64 KB kernel pipe buffer. If the
@@ -37,7 +37,7 @@ struct TaskTests
     @Test( "Collects complete stdout for input larger than the pipe buffer", .timeLimit( .minutes( 1 ) ) )
     func largeInputRoundTrip() throws
     {
-        let task = try #require( Task.run( executableURL: URL( fileURLWithPath: "/bin/cat" ), arguments: [], input: Self.largePayload ) )
+        let task = try #require( ProcessTask.run( executableURL: URL( fileURLWithPath: "/bin/cat" ), arguments: [], input: Self.largePayload ) )
 
         #expect( task.terminationStatus == 0 )
         #expect( task.standardOutput.count == Self.largePayload.count )
@@ -47,7 +47,7 @@ struct TaskTests
     @Test( "Captures standard error", .timeLimit( .minutes( 1 ) ) )
     func capturesStandardError() throws
     {
-        let task = try #require( Task.run( executableURL: URL( fileURLWithPath: "/bin/sh" ), arguments: [ "-c", "printf 'boom' 1>&2" ], input: nil ) )
+        let task = try #require( ProcessTask.run( executableURL: URL( fileURLWithPath: "/bin/sh" ), arguments: [ "-c", "printf 'boom' 1>&2" ], input: nil ) )
 
         #expect( task.terminationStatus == 0 )
         #expect( String( data: task.standardError, encoding: .utf8 ) == "boom" )
@@ -56,7 +56,7 @@ struct TaskTests
     @Test( "Reports a non-zero termination status", .timeLimit( .minutes( 1 ) ) )
     func nonZeroTerminationStatus() throws
     {
-        let task = try #require( Task.run( executableURL: URL( fileURLWithPath: "/bin/sh" ), arguments: [ "-c", "exit 3" ], input: nil ) )
+        let task = try #require( ProcessTask.run( executableURL: URL( fileURLWithPath: "/bin/sh" ), arguments: [ "-c", "exit 3" ], input: nil ) )
 
         #expect( task.terminationStatus == 3 )
     }
@@ -64,6 +64,6 @@ struct TaskTests
     @Test( "Returns nil for a non-existent executable" )
     func missingExecutable()
     {
-        #expect( Task.run( executableURL: URL( fileURLWithPath: "/nonexistent/executable" ), arguments: [], input: nil ) == nil )
+        #expect( ProcessTask.run( executableURL: URL( fileURLWithPath: "/nonexistent/executable" ), arguments: [], input: nil ) == nil )
     }
 }

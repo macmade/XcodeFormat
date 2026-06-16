@@ -75,7 +75,7 @@ public class SourceEditorCommand: NSObject, XCSourceEditorCommand
             return
         }
 
-        guard let task = Task.run( name: executable, arguments: arguments, input: data )
+        guard let task = ProcessTask.run( name: executable, arguments: arguments, input: data )
         else
         {
             throw FormatterError.executableNotFound( executable )
