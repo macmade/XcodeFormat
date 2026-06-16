@@ -42,13 +42,18 @@ public class Task
             return nil
         }
 
-        guard FileManager.default.fileExists( atPath: executable.path )
+        return self.run( executableURL: executable, arguments: arguments, input: input )
+    }
+
+    public class func run( executableURL: URL, arguments: [ String ], input: Data? ) -> Task?
+    {
+        guard FileManager.default.fileExists( atPath: executableURL.path )
         else
         {
             return nil
         }
 
-        let task = Task( executable: executable, arguments: arguments )
+        let task = Task( executable: executableURL, arguments: arguments )
 
         task.run( input: input )
 
@@ -68,12 +73,6 @@ public class Task
 
         self.standardOutput = Data()
         self.standardError  = Data()
-
-        NotificationCenter.default.addObserver( self, selector: #selector( self.dataAvailableForStandardOutput( _: ) ), name: NSNotification.Name.NSFileHandleDataAvailable, object: self.pipeOut.fileHandleForReading )
-        NotificationCenter.default.addObserver( self, selector: #selector( self.dataAvailableForStandardError( _: )  ), name: NSNotification.Name.NSFileHandleDataAvailable, object: self.pipeErr.fileHandleForReading )
-
-        self.pipeOut.fileHandleForReading.waitForDataInBackgroundAndNotify()
-        self.pipeErr.fileHandleForReading.waitForDataInBackgroundAndNotify()
     }
 
     public func run( input: Data? )
@@ -85,6 +84,24 @@ public class Task
 
         self.task.launch()
 
+        // Drain both output pipes to EOF on background queues, started before we
+        // write stdin and before we block in waitUntilExit(). This guarantees the
+        // child can never deadlock by filling a pipe buffer we aren't reading, and
+        // that the full output is collected rather than truncated.
+        let group   = DispatchGroup()
+        var outData = Data()
+        var errData = Data()
+
+        DispatchQueue.global( qos: .userInitiated ).async( group: group )
+        {
+            outData = self.pipeOut.fileHandleForReading.readDataToEndOfFile()
+        }
+
+        DispatchQueue.global( qos: .userInitiated ).async( group: group )
+        {
+            errData = self.pipeErr.fileHandleForReading.readDataToEndOfFile()
+        }
+
         if let input = input, let pipe = self.task.standardInput as? Pipe
         {
             let handle = pipe.fileHandleForWriting
@@ -95,6 +112,12 @@ public class Task
 
         self.task.waitUntilExit()
 
+        // The child has exited and closed its pipe ends, so both reads have hit
+        // (or are about to hit) EOF. Join them before publishing the results.
+        group.wait()
+
+        self.standardOutput    = outData
+        self.standardError     = errData
         self.terminationStatus = self.task.terminationStatus
 
         #if DEBUG
@@ -103,33 +126,5 @@ public class Task
                 print( err )
             }
         #endif
-    }
-
-    @objc
-    private func dataAvailableForStandardOutput( _ notification: Notification )
-    {
-        guard let handle = notification.object as? FileHandle?,
-              let data   = handle?.availableData
-        else
-        {
-            return
-        }
-
-        self.standardOutput.append( data )
-        handle?.waitForDataInBackgroundAndNotify()
-    }
-
-    @objc
-    private func dataAvailableForStandardError( _ notification: Notification )
-    {
-        guard let handle = notification.object as? FileHandle?,
-              let data = handle?.availableData
-        else
-        {
-            return
-        }
-
-        self.standardError.append( data )
-        handle?.waitForDataInBackgroundAndNotify()
     }
 }

@@ -63,6 +63,7 @@
 		415B69E897EF098F1D497C6B /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05744ED528EC2EDB00A88503 /* String.swift */; };
 		422C428BA7CBC2B94FD892A0 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BED21928EC4A2A008039F6 /* Task.swift */; };
 		52C07AA4ACA79DEA083917ED /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05744ECD28EC2E5000A88503 /* URL.swift */; };
+		54AF1A10772285FD73793431 /* TaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913F32B63DB056684754D787 /* TaskTests.swift */; };
 		6AF1DB0943F9AA065EA80860 /* URLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B907F7DC445EA71845A03EE9 /* URLTests.swift */; };
 		7CA215582B396CDC75D0E7A5 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05744ED228EC2ED400A88503 /* Data.swift */; };
 		EF9CF118DCDD7951D6C90043 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E0F6128EB66390080C562 /* Configuration.swift */; };
@@ -241,6 +242,7 @@
 		2B7221495008B0E46F3003F1 /* SharedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SharedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		754426165B1A6F7B9A8AA57D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		78DA3F1F404A081C0DE85CA4 /* ConfigurationTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConfigurationTests.swift; sourceTree = "<group>"; };
+		913F32B63DB056684754D787 /* TaskTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TaskTests.swift; sourceTree = "<group>"; };
 		B907F7DC445EA71845A03EE9 /* URLTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = URLTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -571,6 +573,7 @@
 			children = (
 				B907F7DC445EA71845A03EE9 /* URLTests.swift */,
 				78DA3F1F404A081C0DE85CA4 /* ConfigurationTests.swift */,
+				913F32B63DB056684754D787 /* TaskTests.swift */,
 			);
 			name = SharedTests;
 			path = SharedTests;
@@ -812,6 +815,7 @@
 				415B69E897EF098F1D497C6B /* String.swift in Sources */,
 				52C07AA4ACA79DEA083917ED /* URL.swift in Sources */,
 				422C428BA7CBC2B94FD892A0 /* Task.swift in Sources */,
+				54AF1A10772285FD73793431 /* TaskTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
