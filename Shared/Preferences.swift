@@ -46,6 +46,10 @@ public class Preferences: NSObject
                 return
             }
 
+            // A change elsewhere (or in another process) invalidates the cache
+            // so the next read re-decodes the stored plist.
+            self.cachedConfigurations = nil
+
             self.willChangeValue( for: \.configurations )
             self.didChangeValue(  for: \.configurations )
 
@@ -54,23 +58,39 @@ public class Preferences: NSObject
         }
     }
 
+    private var cachedConfigurations: [ Configuration ]?
+
     @objc public dynamic var configurations: [ Configuration ]
     {
         get
         {
-            if let data    = self.defaults?.object( forKey: "configurations" ) as? Data,
-               let decoded = try? PropertyListDecoder().decode( [ Configuration ].self, from: data )
+            if let cached = self.cachedConfigurations
             {
-                return decoded
+                return cached
             }
 
-            return []
+            let decoded: [ Configuration ]
+
+            if let data    = self.defaults?.object( forKey: "configurations" ) as? Data,
+               let stored  = try? PropertyListDecoder().decode( [ Configuration ].self, from: data )
+            {
+                decoded = stored
+            }
+            else
+            {
+                decoded = []
+            }
+
+            self.cachedConfigurations = decoded
+
+            return decoded
         }
 
         set( value )
         {
             if let data = try? PropertyListEncoder().encode( value )
             {
+                self.cachedConfigurations = value
                 self.defaults?.setValue( data, forKey: "configurations" )
                 DistributedNotificationCenter.default().post( name: Preferences.defaultsChanged, object: nil )
             }

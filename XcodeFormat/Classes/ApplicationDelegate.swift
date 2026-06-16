@@ -175,11 +175,14 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate
         let imageOn  = image?.withSymbolConfiguration( NSImage.SymbolConfiguration( hierarchicalColor: colorOn ) )
         let imageOff = image?.withSymbolConfiguration( NSImage.SymbolConfiguration( hierarchicalColor: colorOff ) )
 
-        Preferences.shared.configurations.sorted
+        // Ascending by name, matching the configurations window's sort. The
+        // items are inserted as a block at the top so the rendered order is the
+        // ascending sort order.
+        let configurationItems: [ NSMenuItem ] = Preferences.shared.configurations.sorted
         {
-            $0.name > $1.name
+            $0.name < $1.name
         }
-        .forEach
+        .map
         {
             let item               = NSMenuItem( title: $0.name, action: #selector( self.selectConfiguration( _: ) ), keyEquivalent: "" )
             item.target            = self
@@ -198,8 +201,10 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate
                 item.attributedTitle = NSAttributedString( string: item.title, attributes: [ .font: fontOff, .foregroundColor: colorOff ] )
             }
 
-            items.insert( item, at: 0 )
+            return item
         }
+
+        items.insert( contentsOf: configurationItems, at: 0 )
 
         self.menu.items = items
     }
