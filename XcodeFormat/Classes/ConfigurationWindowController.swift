@@ -26,16 +26,20 @@ import Cocoa
 
 public class ConfigurationWindowController: NSWindowController
 {
-    @objc public dynamic var name         = ""
-    @objc public dynamic var swiftFormat  = ""
-    @objc public dynamic var uncrustify   = ""
-    @objc public dynamic var configuration: Configuration?
+    @objc public dynamic var name            = "" { didSet { self.resetErrors() } }
+    @objc public dynamic var swiftFormat     = "" { didSet { self.resetErrors() } }
+    @objc public dynamic var uncrustify      = "" { didSet { self.resetErrors() } }
+    @objc public dynamic var nameError:        String?
+    @objc public dynamic var swiftFormatError: String?
+    @objc public dynamic var uncrustifyError:  String?
+    @objc public dynamic var otherError:       String?
+    @objc public dynamic var configuration:    Configuration?
     {
         didSet
         {
-            self.name        = self.configuration?.name                       ?? ""
-            self.swiftFormat = self.configuration?.swiftFormat.absoluteString ?? ""
-            self.uncrustify  = self.configuration?.uncrustify.absoluteString  ?? ""
+            self.name        = self.configuration?.name                        ?? ""
+            self.swiftFormat = self.configuration?.swiftFormat?.absoluteString ?? ""
+            self.uncrustify  = self.configuration?.uncrustify?.absoluteString  ?? ""
         }
     }
 
@@ -87,31 +91,33 @@ public class ConfigurationWindowController: NSWindowController
             return
         }
 
-        guard self.name.isEmpty        == false,
-              self.swiftFormat.isEmpty == false,
-              self.uncrustify.isEmpty  == false
-        else
+        if self.name.isEmpty
         {
-            let alert             = NSAlert()
-            alert.messageText     = "Invalid Values"
-            alert.informativeText = "Please enter a valid value for all fields."
-
-            alert.addButton( withTitle: "OK" )
-            alert.runModal()
+            self.nameError = "Please enter a name"
 
             return
         }
 
-        guard let swiftFormat = URL( string: self.swiftFormat ),
-              let uncrustify  = URL( string: self.uncrustify )
-        else
+        if self.swiftFormat.isEmpty, self.uncrustify.isEmpty
         {
-            let alert             = NSAlert()
-            alert.messageText     = "Invalid URLs"
-            alert.informativeText = "Please enter valid URLs."
+            self.otherError = "Please enter at least one configuration URL"
 
-            alert.addButton( withTitle: "OK" )
-            alert.runModal()
+            return
+        }
+
+        let swiftFormat = URL( string: self.swiftFormat )
+        let uncrustify  = URL( string: self.uncrustify )
+
+        if self.swiftFormat.isEmpty == false, swiftFormat == nil
+        {
+            self.swiftFormatError = "Please enter a valid URL"
+
+            return
+        }
+
+        if self.uncrustify.isEmpty == false, uncrustify == nil
+        {
+            self.uncrustifyError = "Please enter a valid URL"
 
             return
         }
@@ -129,5 +135,13 @@ public class ConfigurationWindowController: NSWindowController
 
         sheet.orderOut( nil )
         window.endSheet( sheet, returnCode: .OK )
+    }
+
+    private func resetErrors()
+    {
+        self.nameError        = nil
+        self.swiftFormatError = nil
+        self.uncrustifyError  = nil
+        self.otherError       = nil
     }
 }

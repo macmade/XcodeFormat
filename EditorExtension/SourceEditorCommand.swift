@@ -41,9 +41,9 @@ public class SourceEditorCommand: NSObject, XCSourceEditorCommand
 
         configuration.withConfigurations
         {
-            if uti == .swiftSource
+            if uti == .swiftSource, let config = $0.swiftFormat?.path
             {
-                self.format( buffer: invocation.buffer, executable: "swiftformat", arguments: [ "--config", $0.swiftFormat.path ] )
+                self.format( buffer: invocation.buffer, executable: "swiftformat", arguments: [ "--config", config ] )
             }
 
             $0.finished()

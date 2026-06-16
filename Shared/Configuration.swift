@@ -29,34 +29,21 @@ import Foundation
 public class Configuration: NSObject, Codable
 {
     @objc public dynamic var name:         String
-    @objc public dynamic var swiftFormat:  URL
-    @objc public dynamic var uncrustify:   URL
+    @objc public dynamic var swiftFormat:  URL?
+    @objc public dynamic var uncrustify:   URL?
     @objc public dynamic var downloading = false
 
     public static var defaultConfigurations: [ Configuration ]
     {
         [
-            Configuration( name: "XS-Labs",       swiftFormat: "https://raw.githubusercontent.com/macmade/cgl/main/config/swiftformat-xs",       uncrustify: "https://raw.githubusercontent.com/macmade/cgl/main/config/uncrustify.cfg" ),
-            Configuration( name: "XS-Labs (MIT)", swiftFormat: "https://raw.githubusercontent.com/macmade/cgl/main/config/swiftformat-xs-mit",   uncrustify: "https://raw.githubusercontent.com/macmade/cgl/main/config/uncrustify.cfg" ),
-            Configuration( name: "DigiDNA",       swiftFormat: "https://raw.githubusercontent.com/DigiDNA/cgl/main/config/swiftformat-ddna",     uncrustify: "https://raw.githubusercontent.com/DigiDNA/cgl/main/config/uncrustify.cfg" ),
-            Configuration( name: "DigiDNA (MIT)", swiftFormat: "https://raw.githubusercontent.com/DigiDNA/cgl/main/config/swiftformat-ddna-mit", uncrustify: "https://raw.githubusercontent.com/DigiDNA/cgl/main/config/uncrustify.cfg" ),
+            Configuration( name: "XS-Labs",       swiftFormat: URL( string: "https://raw.githubusercontent.com/macmade/cgl/main/config/swiftformat-xs" ),       uncrustify: URL( string: "https://raw.githubusercontent.com/macmade/cgl/main/config/uncrustify.cfg" ) ),
+            Configuration( name: "XS-Labs (MIT)", swiftFormat: URL( string: "https://raw.githubusercontent.com/macmade/cgl/main/config/swiftformat-xs-mit" ),   uncrustify: URL( string: "https://raw.githubusercontent.com/macmade/cgl/main/config/uncrustify.cfg" ) ),
+            Configuration( name: "DigiDNA",       swiftFormat: URL( string: "https://raw.githubusercontent.com/DigiDNA/cgl/main/config/swiftformat-ddna" ),     uncrustify: URL( string: "https://raw.githubusercontent.com/DigiDNA/cgl/main/config/uncrustify.cfg" ) ),
+            Configuration( name: "DigiDNA (MIT)", swiftFormat: URL( string: "https://raw.githubusercontent.com/DigiDNA/cgl/main/config/swiftformat-ddna-mit" ), uncrustify: URL( string: "https://raw.githubusercontent.com/DigiDNA/cgl/main/config/uncrustify.cfg" ) ),
         ]
-        .compactMap { $0 }
     }
 
-    public convenience init?( name: String, swiftFormat: String, uncrustify: String )
-    {
-        guard let swiftFormat = URL( string: swiftFormat ),
-              let uncrustify  = URL( string: uncrustify )
-        else
-        {
-            return nil
-        }
-
-        self.init( name: name, swiftFormat: swiftFormat, uncrustify: uncrustify )
-    }
-
-    public init( name: String, swiftFormat: URL, uncrustify: URL )
+    public init( name: String, swiftFormat: URL?, uncrustify: URL? )
     {
         self.name        = name
         self.swiftFormat = swiftFormat
@@ -106,8 +93,15 @@ public class Configuration: NSObject, Codable
 
             DispatchQueue.global( qos: .userInitiated ).async
             {
-                self.download( url: self.swiftFormat )
-                self.download( url: self.uncrustify )
+                if let url = self.swiftFormat
+                {
+                    self.download( url: url )
+                }
+
+                if let url = self.uncrustify
+                {
+                    self.download( url: url )
+                }
 
                 DispatchQueue.main.async
                 {
@@ -138,30 +132,46 @@ public class Configuration: NSObject, Codable
         }
     }
 
-    public func withConfigurations( completion: ( ( swiftFormat: URL, uncrustify: URL, finished: () -> Void ) ) -> Void, error: () -> Void )
+    public func withConfigurations( completion: ( ( swiftFormat: URL?, uncrustify: URL?, finished: () -> Void ) ) -> Void, error: () -> Void )
     {
-        guard let swiftFormat = self.copy( url: self.swiftFormat ),
-              let uncrustify  = self.copy( url: self.uncrustify )
-        else
+        let swiftFormat = self.copy( url: self.swiftFormat )
+        let uncrustify  = self.copy( url: self.uncrustify )
+
+        if ( self.swiftFormat != nil && swiftFormat == nil ) || ( self.uncrustify != nil && uncrustify == nil )
+        {
+            self.download()
+        }
+
+        if swiftFormat == nil, uncrustify == nil
         {
             error()
-            self.download()
 
             return
         }
 
         let finished: () -> Void =
         {
-            try? FileManager.default.removeItem( at: swiftFormat )
-            try? FileManager.default.removeItem( at: uncrustify )
+            [
+                swiftFormat,
+                uncrustify,
+            ]
+            .compactMap
+            {
+                $0
+            }
+            .forEach
+            {
+                try? FileManager.default.removeItem( at: $0 )
+            }
         }
 
         completion( ( swiftFormat: swiftFormat, uncrustify: uncrustify, finished: finished ) )
     }
 
-    private func copy( url: URL ) -> URL?
+    private func copy( url: URL? ) -> URL?
     {
-        guard let sha256    = url.sha256,
+        guard let url       = url,
+              let sha256    = url.sha256,
               let container = FileManager.sharedContainerURL?.appendingPathComponent( "Configurations" )
         else
         {

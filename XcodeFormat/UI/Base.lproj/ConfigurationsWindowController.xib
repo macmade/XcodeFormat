@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21225" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21225"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,7 +17,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="800" height="400"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="3008" height="1228"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1710" height="1069"/>
             <value key="minSize" type="size" width="800" height="400"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="800" height="400"/>
@@ -78,12 +77,12 @@
                                                 </tableCellView>
                                             </prototypeCellViews>
                                         </tableColumn>
-                                        <tableColumn identifier="AutomaticTableColumnIdentifier.1" width="238.5" minWidth="40" maxWidth="1000" id="NdS-hO-ifJ">
-                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="SwiftFormat">
+                                        <tableColumn identifier="AutomaticTableColumnIdentifier.1" width="238" minWidth="40" maxWidth="1000" id="a6a-aZ-88e">
+                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Swift Format">
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                             </tableHeaderCell>
-                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="GYl-QN-WKc">
+                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="Owm-NT-bLT">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -91,35 +90,35 @@
                                             <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="swiftFormat.absoluteString"/>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
-                                                <tableCellView id="FJk-VA-vlP">
-                                                    <rect key="frame" x="233.5" y="0.0" width="238" height="24"/>
+                                                <tableCellView id="mh1-e9-hFj">
+                                                    <rect key="frame" x="234" y="0.0" width="238" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="EUx-sw-vnG">
+                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="l82-Lb-OfL">
                                                             <rect key="frame" x="-2" y="5" width="84" height="14"/>
-                                                            <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="UG7-VN-22l">
+                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="F7u-BJ-S5x">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="FJk-VA-vlP" name="value" keyPath="objectValue.swiftFormat.absoluteString" id="OqU-x4-5ZN"/>
-                                                                <binding destination="FJk-VA-vlP" name="toolTip" keyPath="objectValue.swiftFormat.absoluteString" id="xfN-eV-CPT"/>
+                                                                <binding destination="mh1-e9-hFj" name="toolTip" keyPath="objectValue.swiftFormat.absoluteString" id="B4B-cS-f8W"/>
+                                                                <binding destination="mh1-e9-hFj" name="value" keyPath="objectValue.swiftFormat.absoluteString" id="JWq-JN-JRn"/>
                                                             </connections>
                                                         </textField>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EUx-sw-vnG" secondAttribute="trailing" id="887-gi-BDK"/>
-                                                        <constraint firstItem="EUx-sw-vnG" firstAttribute="leading" secondItem="FJk-VA-vlP" secondAttribute="leading" id="Jk0-2a-nKo"/>
-                                                        <constraint firstItem="EUx-sw-vnG" firstAttribute="centerY" secondItem="FJk-VA-vlP" secondAttribute="centerY" id="UfK-YI-vNS"/>
+                                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="l82-Lb-OfL" secondAttribute="trailing" id="7zt-uE-d6E"/>
+                                                        <constraint firstItem="l82-Lb-OfL" firstAttribute="leading" secondItem="mh1-e9-hFj" secondAttribute="leading" id="Wce-A1-laC"/>
+                                                        <constraint firstItem="l82-Lb-OfL" firstAttribute="centerY" secondItem="mh1-e9-hFj" secondAttribute="centerY" id="uHh-BL-g93"/>
                                                     </constraints>
                                                     <connections>
-                                                        <outlet property="textField" destination="EUx-sw-vnG" id="YPA-pj-fhB"/>
+                                                        <outlet property="textField" destination="l82-Lb-OfL" id="mlZ-24-YC6"/>
                                                     </connections>
                                                 </tableCellView>
                                             </prototypeCellViews>
                                         </tableColumn>
-                                        <tableColumn identifier="AutomaticTableColumnIdentifier.1" width="238.5" minWidth="40" maxWidth="1000" id="TZG-jh-r8F">
+                                        <tableColumn identifier="AutomaticTableColumnIdentifier.2" width="238.5" minWidth="40" maxWidth="1000" id="TZG-jh-r8F">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Uncrustify">
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -133,7 +132,7 @@
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView id="XFD-hp-8z2">
-                                                    <rect key="frame" x="489" y="0.0" width="236" height="24"/>
+                                                    <rect key="frame" x="489" y="0.0" width="235" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="PaQ-Uj-dTT">
@@ -256,8 +255,8 @@
         <arrayController selectsInsertedObjects="NO" avoidsEmptySelection="NO" clearsFilterPredicateOnInsertion="NO" automaticallyRearrangesObjects="YES" id="aYJ-mh-YdL"/>
     </objects>
     <resources>
-        <image name="NSAddTemplate" width="14" height="13"/>
-        <image name="NSRemoveTemplate" width="14" height="4"/>
+        <image name="NSAddTemplate" width="18" height="17"/>
+        <image name="NSRemoveTemplate" width="18" height="5"/>
         <image name="pencil" catalog="system" width="14" height="13"/>
     </resources>
 </document>
