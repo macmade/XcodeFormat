@@ -723,6 +723,12 @@
                         <action selector="showHelp:" target="Voe-Tx-rLC" id="T1K-5t-ShB"/>
                     </connections>
                 </menuItem>
+                <menuItem title="Credits..." image="checkmark.seal" catalog="system" id="YH6-bQ-Bub">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showCreditsWindow:" target="Voe-Tx-rLC" id="FbA-fb-JfP"/>
+                    </connections>
+                </menuItem>
                 <menuItem isSeparatorItem="YES" id="n33-lJ-mzx"/>
                 <menuItem title="Quit" keyEquivalent="q" id="nve-ZP-rii">
                     <connections>
@@ -733,4 +739,7 @@
             <point key="canvasLocation" x="64" y="441"/>
         </menu>
     </objects>
+    <resources>
+        <image name="checkmark.seal" catalog="system" width="17" height="17"/>
+    </resources>
 </document>
