@@ -14,7 +14,6 @@
         <customObject id="Voe-Tx-rLC" customClass="ApplicationDelegate" customModule="Xcode_Format" customModuleProvider="target">
             <connections>
                 <outlet property="menu" destination="BIo-AU-9zh" id="FLg-GZ-Gfn"/>
-                <outlet property="updater" destination="asJ-hr-Pqm" id="EMq-rh-4NI"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
@@ -710,9 +709,6 @@
                 </menuItem>
                 <menuItem title="Check for Updates..." id="LhN-1W-uwb">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="checkForUpdates:" target="asJ-hr-Pqm" id="lGc-ih-QeH"/>
-                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="IkI-vw-vU1"/>
                 <menuItem title="About Xcode Format..." id="KU9-Wy-x5J">
@@ -736,11 +732,5 @@
             </items>
             <point key="canvasLocation" x="64" y="441"/>
         </menu>
-        <customObject id="asJ-hr-Pqm" customClass="GitHubUpdater">
-            <userDefinedRuntimeAttributes>
-                <userDefinedRuntimeAttribute type="string" keyPath="user" value="macmade"/>
-                <userDefinedRuntimeAttribute type="string" keyPath="repository" value="XcodeFormat"/>
-            </userDefinedRuntimeAttributes>
-        </customObject>
     </objects>
 </document>

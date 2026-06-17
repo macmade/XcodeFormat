@@ -40,8 +40,6 @@
 		050E0F6528EB83BB0080C562 /* ArrayIsEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E0F6428EB83BB0080C562 /* ArrayIsEmpty.swift */; };
 		050E0F6728EB83CC0080C562 /* ArrayIsNotEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E0F6628EB83CC0080C562 /* ArrayIsNotEmpty.swift */; };
 		050E0F6928EB84C90080C562 /* ConfigurationWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E0F6828EB84C90080C562 /* ConfigurationWindowController.swift */; };
-		050E0F7928EBDF850080C562 /* GitHubUpdates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050E0F7528EBDF6A0080C562 /* GitHubUpdates.framework */; };
-		050E0F7B28EBDF970080C562 /* GitHubUpdates.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 050E0F7528EBDF6A0080C562 /* GitHubUpdates.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0527679428EC1B970019311B /* CryptoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0527679128EC1B970019311B /* CryptoKit.framework */; };
 		0527679528EC1B9D0019311B /* CryptoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0527679128EC1B970019311B /* CryptoKit.framework */; };
 		0527679728EC1DE60019311B /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0527679628EC1DE60019311B /* FileManager.swift */; };
@@ -107,20 +105,6 @@
 			remoteGlobalIDString = 050E0F2728EB49210080C562;
 			remoteInfo = EditorExtension;
 		};
-		050E0F7428EBDF6A0080C562 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 050E0F6F28EBDF6A0080C562 /* GitHubUpdates.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 05F82B251EF32EA700EC8A93;
-			remoteInfo = GitHubUpdates;
-		};
-		050E0F7628EBDF6A0080C562 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 050E0F6F28EBDF6A0080C562 /* GitHubUpdates.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0555EBA01EF3DDA10016167F;
-			remoteInfo = Relauncher;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -164,7 +148,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				050E0F7B28EBDF970080C562 /* GitHubUpdates.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,7 +247,6 @@
 		050E0F6428EB83BB0080C562 /* ArrayIsEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayIsEmpty.swift; sourceTree = "<group>"; };
 		050E0F6628EB83CC0080C562 /* ArrayIsNotEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayIsNotEmpty.swift; sourceTree = "<group>"; };
 		050E0F6828EB84C90080C562 /* ConfigurationWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationWindowController.swift; sourceTree = "<group>"; };
-		050E0F6F28EBDF6A0080C562 /* GitHubUpdates.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GitHubUpdates.xcodeproj; path = Submodules/GitHubUpdates/GitHubUpdates.xcodeproj; sourceTree = "<group>"; };
 		050E0F7828EBDF720080C562 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0527679128EC1B970019311B /* CryptoKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoKit.framework; path = System/Library/Frameworks/CryptoKit.framework; sourceTree = SDKROOT; };
 		0527679628EC1DE60019311B /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
@@ -306,7 +288,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0527679428EC1B970019311B /* CryptoKit.framework in Frameworks */,
-				050E0F7928EBDF850080C562 /* GitHubUpdates.framework in Frameworks */,
 				A4F982ADB6427070FC3F083D /* ArgumentParser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,7 +318,6 @@
 			isa = PBXGroup;
 			children = (
 				050E0F7828EBDF720080C562 /* README.md */,
-				050E0F6F28EBDF6A0080C562 /* GitHubUpdates.xcodeproj */,
 				050E0EBE28EB3C8B0080C562 /* xcconfig */,
 				050E0F5C28EB659F0080C562 /* Shared */,
 				050E0E3E28EB307B0080C562 /* XcodeFormat */,
@@ -603,15 +583,6 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		050E0F7028EBDF6A0080C562 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				050E0F7528EBDF6A0080C562 /* GitHubUpdates.framework */,
-				050E0F7728EBDF6A0080C562 /* Relauncher */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		05C2595F28EC8A5C008BDDDE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -644,7 +615,6 @@
 				063A2606544CBB8F999B2511 /* ConfigurationURLTests.swift */,
 				CD958B74D14E91DB0C29323F /* FileFormatterTests.swift */,
 			);
-			name = SharedTests;
 			path = SharedTests;
 			sourceTree = "<group>";
 		};
@@ -745,12 +715,6 @@
 			);
 			productRefGroup = 050E0E3D28EB307B0080C562 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 050E0F7028EBDF6A0080C562 /* Products */;
-					ProjectRef = 050E0F6F28EBDF6A0080C562 /* GitHubUpdates.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				050E0E3B28EB307B0080C562 /* Xcode Format */,
@@ -759,23 +723,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		050E0F7528EBDF6A0080C562 /* GitHubUpdates.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = GitHubUpdates.framework;
-			remoteRef = 050E0F7428EBDF6A0080C562 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		050E0F7728EBDF6A0080C562 /* Relauncher */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = Relauncher;
-			remoteRef = 050E0F7628EBDF6A0080C562 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		050E0E3A28EB307B0080C562 /* Resources */ = {
