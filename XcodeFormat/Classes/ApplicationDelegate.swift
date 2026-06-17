@@ -23,7 +23,7 @@
  ******************************************************************************/
 
 import Cocoa
-import GitHubUpdates
+import SwiftUtilities
 
 /// The application delegate and menu-bar agent entry point.
 ///
@@ -44,34 +44,34 @@ import GitHubUpdates
 public class ApplicationDelegate: NSObject, NSApplicationDelegate
 {
     /// Controller for the About window.
-    private let aboutWindowController          = AboutWindowController()
+    private let aboutWindowController = AboutWindowController()
 
     /// Controller for the Credits window.
-    private let creditsWindowController        = CreditsWindowController()
+    private let creditsWindowController = CreditsWindowController()
 
     /// Controller for the Configurations management window.
     private let configurationsWindowController = ConfigurationsWindowController()
 
     /// Controller for the Preferences window.
-    private let preferencesWindowController    = PreferencesWindowController()
+    private let preferencesWindowController = PreferencesWindowController()
 
     /// Menu shown by the status-bar item, loaded from the main nib.
-    @IBOutlet private var menu:    NSMenu!
-
-    /// GitHub-based updater that checks for and installs new releases.
-    @IBOutlet private var updater: GitHubUpdater!
+    @IBOutlet private var menu: NSMenu!
 
     /// Timer that periodically re-downloads the stored configurations.
-    private var downloadTimer:                  Timer?
+    private var downloadTimer: Timer?
 
     /// The menu-bar status item, recreated whenever its style changes.
-    private var statusItem:                     NSStatusItem?
+    private var statusItem: NSStatusItem?
 
     /// KVO token observing changes to the stored configuration list.
-    private var configurationsObserver:         NSKeyValueObservation?
+    private var configurationsObserver: NSKeyValueObservation?
 
     /// KVO token observing changes to the selected configuration.
     private var selectedConfigurationsObserver: NSKeyValueObservation?
+
+    /// GitHub-based updater that checks for and installs new releases.
+    private var updater = GitHubUpdater( owner: "macmade", repository: "XcodeFormat" )
 
     /// Whether the status item shows the active configuration's name.
     ///
@@ -162,7 +162,7 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate
 
         DispatchQueue.main.asyncAfter( deadline: .now() + .seconds( 2 ) )
         {
-            self.updater.checkForUpdatesInBackground()
+            self.updater?.checkForUpdatesInBackground()
         }
 
         self.downloadTimer = Timer.scheduledTimer( withTimeInterval: 3600, repeats: true )
@@ -439,5 +439,14 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate
         }
 
         NSWorkspace.shared.open( url )
+    }
+
+    /// Checks whether a new release is available on GitHub and opens the release page in
+    ///
+    /// - Parameter sender: The control that triggered the action.
+    @IBAction
+    public func checkForUpdates( _ sender: Any? )
+    {
+        self.updater?.checkForUpdates()
     }
 }

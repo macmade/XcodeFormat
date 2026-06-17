@@ -709,6 +709,9 @@
                 </menuItem>
                 <menuItem title="Check for Updates..." id="LhN-1W-uwb">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="checkForUpdates:" target="Voe-Tx-rLC" id="53G-1d-b9l"/>
+                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="IkI-vw-vU1"/>
                 <menuItem title="About Xcode Format..." id="KU9-Wy-x5J">
