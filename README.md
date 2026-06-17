@@ -8,6 +8,26 @@ XcodeFormat
 [![Contact](https://img.shields.io/badge/follow-@macmade-blue.svg?logo=twitter&style=social)](https://twitter.com/macmade)
 [![Sponsor](https://img.shields.io/badge/sponsor-macmade-pink.svg?logo=github-sponsors&style=social)](https://github.com/sponsors/macmade)
 
+XcodeFormat automatically formats your source files when you save in Xcode.
+
+It's a macOS menu-bar app paired with an Xcode Source Editor extension. By
+rebinding `cmd-s`, every save first runs your code through a formatter and then
+saves the file, so your style is enforced without any extra steps:
+
+- **Swift** is formatted with [SwiftFormat](https://github.com/nicklockwood/SwiftFormat).
+- **C, C++, Objective-C and Objective-C++** are formatted with [uncrustify](https://github.com/uncrustify/uncrustify).
+
+Both formatters are bundled inside the app, so there's nothing else to install.
+
+Formatting is driven by named **configurations**. Each pairs a SwiftFormat
+config with an uncrustify config, and these can point to remote URLs that the
+app keeps up to date in the background — handy for sharing a single house style
+across a team.
+
+The same engine is also available [from the command line](#command-line-usage),
+so you can format files outside Xcode — in scripts, build phases, or editor
+hooks.
+
 ### How to install
 
 Quit Xcode.
@@ -15,7 +35,7 @@ Quit Xcode.
 Download the [latest release](https://github.com/macmade/XcodeFormat/releases/latest) and place the `.app` file in your `Applications` folder.  
 Launch the application.
 
-Open the `System Preferences`, navigate to the `Keyboard` section, and select `App Shortcuts` in the sidebar:
+Open `System Settings`, navigate to the `Keyboard` section, and select `App Shortcuts`:
 
 ![Screenshot](Assets/Screenshots/1-Keyboard-Shortcuts.png "Keyboard Shortcuts")
 
@@ -25,16 +45,16 @@ Click the `+` button to add a new shortcut:
 
 Choose `Xcode` as application, type `XcodeFormat` in `Menu Title` field, and set the shortcut to `cmd-s`.
 
-From the `System Preferences`, navigate to the `Security & Privacy` section, and select `Accessibility` in the sidebar.  
+From `System Settings`, navigate to the `Privacy & Security` section, and select `Accessibility`.  
 Add Xcode to the list of applications and ensure the checkbox next to it is selected.
 
 ![Screenshot](Assets/Screenshots/3-Security-Accessibility.png "Security Accessibility")
 
-From the `System Preferences`, ensure that `Xcode Source Editor` is enabled for the `Xcode Format` extension.
+From `System Settings`, ensure that `Xcode Source Editor` is enabled for the `Xcode Format` extension.
 
 ![Screenshot](Assets/Screenshots/4-Xcode-Source-Editor.png "Xcode Source Editor")
 
-Open Xcode, go the the `Preferences` and navigate to the `Key Bindings` tab.  
+Open Xcode, go to the `Preferences` and navigate to the `Key Bindings` tab.  
 Search for `Save`, and choose a different shortcut for the save action (such as `cmd-ctrl-s`):
 
 ![Screenshot](Assets/Screenshots/5-Xcode-KeyBindings.png "Xcode KeyBindings")
@@ -49,7 +69,7 @@ Once a configuration is active, it will be used next time you save a file in Xco
 It is advised to keep this application running (and set it to start at login), as it will periodically update the configuration files from the supplied URLs.
 
 An automator workflow will run every time you use the `cmd-s` shortcut.  
-The worklow will trigger the `Editor > Xcode Format Extension > Format Current File` and `File > Save` menu items.
+The workflow will trigger the `Editor > Xcode Format Extension > Format Current File` and `File > Save` menu items.
 
 ### Command-line usage
 
