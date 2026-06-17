@@ -113,7 +113,9 @@ public class ApplicationDelegate: NSObject, NSApplicationDelegate
     /// - Parameter notification: The launch notification (unused).
     public func applicationWillFinishLaunching( _ notification: Notification )
     {
-        if getppid() == 1
+        let runFromXcode = ProcessInfo.processInfo.arguments.count > 1 && ProcessInfo.processInfo.arguments[ 1 ].hasPrefix( "-NS" )
+
+        if getppid() == 1 || runFromXcode
         {
             return
         }
