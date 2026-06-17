@@ -51,6 +51,72 @@ It is advised to keep this application running (and set it to start at login), a
 An automator workflow will run every time you use the `cmd-s` shortcut.  
 The worklow will trigger the `Editor > Xcode Format Extension > Format Current File` and `File > Save` menu items.
 
+### Command-line usage
+
+The application bundle can also be invoked directly from the command line to format files, without going through Xcode.  
+This makes it possible to format files in scripts, build phases, or editor integrations.
+
+The binary lives inside the application bundle:
+
+```
+/Applications/Xcode Format.app/Contents/MacOS/Xcode Format
+```
+
+It shares the same stored configurations as the menu-bar app, so it works whether or not the app is running (and even before it has ever been launched, using the built-in defaults).
+
+```
+OVERVIEW: Format source files using a named XcodeFormat configuration.
+
+USAGE: XcodeFormat [--list] [--config <config>] [<files> ...]
+
+ARGUMENTS:
+  <files>                 Source files to format in place.
+
+OPTIONS:
+  -l, --list              List the available configurations.
+  -c, --config <config>   Name of the configuration to use.
+  -h, --help              Show help information.
+```
+
+For example, to list the available configurations:
+
+```sh
+"/Applications/Xcode Format.app/Contents/MacOS/Xcode Format" --list
+```
+
+And to format one or more files in place using a named configuration:
+
+```sh
+"/Applications/Xcode Format.app/Contents/MacOS/Xcode Format" --config MyConfig File1.swift File2.swift
+```
+
+### Using with Claude Code hooks
+
+Because it can be driven from the command line, `Xcode Format` can be used in a [Claude Code](https://claude.com/claude-code) hook to automatically enforce formatting every time a file is written or edited.
+
+The following `PostToolUse` hook runs `Xcode Format` after every `Write` or `Edit`, but only for source files on macOS, and only when the application is installed:
+
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "statusMessage": "Formatting with Xcode Format…",
+            "command": "jq -r '.tool_input.file_path // .tool_response.filePath // empty' | { read -r f; [ -n \"$f\" ] || exit 0; [ \"$(uname -s)\" = \"Darwin\" ] || exit 0; case \"$f\" in *.swift|*.c|*.h|*.m|*.mm|*.cpp|*.cc|*.cxx|*.hpp|*.hh) :;; *) exit 0;; esac; fmt=\"/Applications/Xcode Format.app/Contents/MacOS/Xcode Format\"; [ -x \"$fmt\" ] || exit 0; \"$fmt\" --config XS-Labs \"$f\"; } 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+Replace `XS-Labs` with the name of the configuration you want to enforce (see `--list` for the available names).
+
 License
 -------
 
